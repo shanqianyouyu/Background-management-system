@@ -1,4 +1,4 @@
-package com.ctgu.dao.mapper;
+package com.ctgu.dao.mappers;
 
 import com.ctgu.pojo.Customer;
 import com.ctgu.pojo.CustomerExample;

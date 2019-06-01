@@ -5,9 +5,9 @@ import java.util.Date;
 import java.util.List;
 
 public class CustomerExample {
-    protected String orderByClause;
+    protected String orderByClause;//排序
 
-    protected boolean distinct;
+    protected boolean distinct;//限制
 
     protected List<Criteria> oredCriteria;
 

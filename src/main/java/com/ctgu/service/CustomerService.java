@@ -17,4 +17,6 @@ import com.ctgu.pojo.Customer;
 @Service
 public interface CustomerService {
 	Customer login(Integer phoneNumber);
+
+	Boolean isPresenceCustomer(String eamil);
 }

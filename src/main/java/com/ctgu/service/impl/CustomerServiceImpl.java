@@ -1,9 +1,12 @@
 package com.ctgu.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.ctgu.dao.mapper.CustomerMapper;
+import com.ctgu.dao.mappers.CustomerMapper;
 import com.ctgu.pojo.Customer;
+import com.ctgu.pojo.CustomerExample;
 import com.ctgu.service.CustomerService;
 
 /**
@@ -25,6 +28,18 @@ public class CustomerServiceImpl implements CustomerService {
 	public Customer login(Integer phoneNumber) {
 		Customer customer = customerMapper.selectByPrimaryKey(phoneNumber);
 		return customer;
+	}
+
+	@Override // 判断用户名是否存在
+	public Boolean isPresenceCustomer(String email) {
+		CustomerExample customerExample = new CustomerExample();
+		customerExample.setOrderByClause(email);
+		List<Customer> customer = customerMapper.selectByExample(customerExample);
+		if (customer.size() == 1) {// 查到一个
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 }

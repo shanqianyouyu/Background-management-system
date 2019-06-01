@@ -17,17 +17,17 @@
 		<form class="form-horizontal container-fluid">
 				
 				<div class="form-group row">
-						<label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+						<label for="email" class="col-sm-2 control-label">Email</label>
 						<div class="col-sm-8">
-								<input type="email" id="email" class="form-control" id="inputEmail3" placeholder="Email">
+								<input type="email" id="email" class="form-control" placeholder="Email"/>
 						</div>
 						<label id="lab_email" class="col-sm-2"></label>
 				</div>
 				
 				<div class="form-group row">
-						<label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+						<label for="password" class="col-sm-2 control-label">Password</label>
 						<div class="col-sm-8">
-								<input type="password" id="password" class="form-control" id="inputPassword3" placeholder="Password">
+								<input type="password" id="password" class="form-control" placeholder="Password">
 						</div>
 						<label id="lab_password"  class="col-sm-2"></label>
 				</div>
