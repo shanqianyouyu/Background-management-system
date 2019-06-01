@@ -22,16 +22,17 @@ import com.ctgu.service.CustomerService;
 @RequestMapping("/ajax")
 public class AjaxController {
 
-	@Autowired
-	private CustomerService customerService;
+//	@Autowired
+//	private CustomerService customerService;
 
 	@RequestMapping("/email")
 	@ResponseBody
-	public Boolean username(@RequestBody String email) {
+	public String username(@RequestBody String email) {
 
 		System.out.println("email: " + email);
-		Boolean result = customerService.isPresenceCustomer(email);
-		return result;
+//		Boolean result = customerService.isPresenceCustomer(email);
+//		return result;
+		return email;
 	}
 
 	@RequestMapping("/password")
