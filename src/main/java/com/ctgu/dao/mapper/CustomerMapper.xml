@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ctgu.mapper.CustomerMapper" >
+  <resultMap id="BaseResultMap" type="com.ctgu.pojo.Customer" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="Cnum" property="cnum" jdbcType="VARCHAR" />
+    <result column="Cname" property="cname" jdbcType="VARCHAR" />
+    <result column="Cnumber" property="cnumber" jdbcType="VARCHAR" />
+    <result column="Caddr" property="caddr" jdbcType="VARCHAR" />
+    <result column="createDate" property="createdate" jdbcType="TIMESTAMP" />
+    <result column="Cemail" property="cemail" jdbcType="VARCHAR" />
+    <result column="Crank" property="crank" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    Id, Cnum, Cname, Cnumber, Caddr, createDate, Cemail, Crank
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ctgu.pojo.CustomerExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from customer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from customer
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from customer
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ctgu.pojo.CustomerExample" >
+    delete from customer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ctgu.pojo.Customer" >
+    insert into customer (Id, Cnum, Cname, 
+      Cnumber, Caddr, createDate, 
+      Cemail, Crank)
+    values (#{id,jdbcType=INTEGER}, #{cnum,jdbcType=VARCHAR}, #{cname,jdbcType=VARCHAR}, 
+      #{cnumber,jdbcType=VARCHAR}, #{caddr,jdbcType=VARCHAR}, #{createdate,jdbcType=TIMESTAMP}, 
+      #{cemail,jdbcType=VARCHAR}, #{crank,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ctgu.pojo.Customer" >
+    insert into customer
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        Id,
+      </if>
+      <if test="cnum != null" >
+        Cnum,
+      </if>
+      <if test="cname != null" >
+        Cname,
+      </if>
+      <if test="cnumber != null" >
+        Cnumber,
+      </if>
+      <if test="caddr != null" >
+        Caddr,
+      </if>
+      <if test="createdate != null" >
+        createDate,
+      </if>
+      <if test="cemail != null" >
+        Cemail,
+      </if>
+      <if test="crank != null" >
+        Crank,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="cnum != null" >
+        #{cnum,jdbcType=VARCHAR},
+      </if>
+      <if test="cname != null" >
+        #{cname,jdbcType=VARCHAR},
+      </if>
+      <if test="cnumber != null" >
+        #{cnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="caddr != null" >
+        #{caddr,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null" >
+        #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cemail != null" >
+        #{cemail,jdbcType=VARCHAR},
+      </if>
+      <if test="crank != null" >
+        #{crank,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ctgu.pojo.CustomerExample" resultType="java.lang.Integer" >
+    select count(*) from customer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update customer
+    <set >
+      <if test="record.id != null" >
+        Id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.cnum != null" >
+        Cnum = #{record.cnum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cname != null" >
+        Cname = #{record.cname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cnumber != null" >
+        Cnumber = #{record.cnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.caddr != null" >
+        Caddr = #{record.caddr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createdate != null" >
+        createDate = #{record.createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.cemail != null" >
+        Cemail = #{record.cemail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.crank != null" >
+        Crank = #{record.crank,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update customer
+    set Id = #{record.id,jdbcType=INTEGER},
+      Cnum = #{record.cnum,jdbcType=VARCHAR},
+      Cname = #{record.cname,jdbcType=VARCHAR},
+      Cnumber = #{record.cnumber,jdbcType=VARCHAR},
+      Caddr = #{record.caddr,jdbcType=VARCHAR},
+      createDate = #{record.createdate,jdbcType=TIMESTAMP},
+      Cemail = #{record.cemail,jdbcType=VARCHAR},
+      Crank = #{record.crank,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ctgu.pojo.Customer" >
+    update customer
+    <set >
+      <if test="cnum != null" >
+        Cnum = #{cnum,jdbcType=VARCHAR},
+      </if>
+      <if test="cname != null" >
+        Cname = #{cname,jdbcType=VARCHAR},
+      </if>
+      <if test="cnumber != null" >
+        Cnumber = #{cnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="caddr != null" >
+        Caddr = #{caddr,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null" >
+        createDate = #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cemail != null" >
+        Cemail = #{cemail,jdbcType=VARCHAR},
+      </if>
+      <if test="crank != null" >
+        Crank = #{crank,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ctgu.pojo.Customer" >
+    update customer
+    set Cnum = #{cnum,jdbcType=VARCHAR},
+      Cname = #{cname,jdbcType=VARCHAR},
+      Cnumber = #{cnumber,jdbcType=VARCHAR},
+      Caddr = #{caddr,jdbcType=VARCHAR},
+      createDate = #{createdate,jdbcType=TIMESTAMP},
+      Cemail = #{cemail,jdbcType=VARCHAR},
+      Crank = #{crank,jdbcType=VARCHAR}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
