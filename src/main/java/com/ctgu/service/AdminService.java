@@ -1,6 +1,7 @@
 package com.ctgu.service;
 
 
+import com.ctgu.pojo.Admin;
 import com.ctgu.pojo.Customer;
 
 /**
@@ -14,8 +15,8 @@ import com.ctgu.pojo.Customer;
  */
 
 
-public interface CustomerService {
-	Customer login(Integer phoneNumber);
+public interface AdminService {
+	Admin login(Integer phoneNumber);
 
-	Customer isPresenceCustomer(String eamil);
+	Admin isPresenceAdmin(String eamil);
 }

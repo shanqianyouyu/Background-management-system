@@ -14,11 +14,11 @@
 <body>
 <div class="login_table">
 		<h1>欢迎登录</h1>
-		<form class="form-horizontal container-fluid">
+		<div class="form-horizontal container-fluid">
 				
 				<div class="form-group row">
 						<label for="email" class="col-sm-2 control-label">Email</label>
-						<div class="col-sm-8">
+						<div class="col-sm-10">
 								<input type="email" id="email" class="form-control" placeholder="Email"/>
 						</div>
 						<label class="col-sm-2">&nbsp;</label>
@@ -27,7 +27,7 @@
 				
 				<div class="form-group row">
 						<label for="password" class="col-sm-2 control-label">Password</label>
-						<div class="col-sm-8">
+						<div class="col-sm-10">
 								<input type="password" id="password" class="form-control" placeholder="Password">
 						</div>
 						<label class="col-sm-2">&nbsp;</label>
@@ -39,7 +39,8 @@
 				<div class="form-group row btn_group">
 						<div class=" col-sm-3"></div>
 						<div class=" col-sm-2">
-								<button type="submit" class="btn">Sign in</button>
+						<!--  <button id="sign" class="btn">Sign in</button>-->
+								 <button type="submit" id="sign" class="btn">Sign in</button>
 						</div>
 						<div class="col-sm-2"></div>
 						<div class="col-sm-2">

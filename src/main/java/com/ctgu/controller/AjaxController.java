@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ctgu.pojo.Customer;
-import com.ctgu.service.CustomerService;
+import com.ctgu.service.AdminService;
 
 import net.sf.json.JSONObject;
 
@@ -26,7 +26,7 @@ import net.sf.json.JSONObject;
 public class AjaxController {
 
 	@Autowired
-	public CustomerService customerService;
+	public AdminService customerService;
 
 	@RequestMapping("/email")
 	@ResponseBody
@@ -35,9 +35,10 @@ public class AjaxController {
 
 		email = json.getString("email");
 		System.out.println("email: " + email);
-		Customer customer = customerService.isPresenceCustomer(email);
-		return customer == null ? "false" : "true";// 为空返回false 否则返回true
+//		Customer customer = customerService.isPresenceCustomer(email);
+//		return customer == null ? "false" : "true";// 为空返回false 否则返回true
 //		return email;
+		return null;
 	}
 
 	@RequestMapping("/password")
