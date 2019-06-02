@@ -3,10 +3,12 @@ package com.ctgu.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.ctgu.dao.mappers.CustomerMapper;
 import com.ctgu.pojo.Customer;
 import com.ctgu.pojo.CustomerExample;
+import com.ctgu.pojo.CustomerExample.Criteria;
 import com.ctgu.service.CustomerService;
 
 /**
@@ -18,11 +20,11 @@ import com.ctgu.service.CustomerService;
  * @author: 拉布拉多
  * @date: 2019年5月31日 下午9:51:03
  */
-
+@Service
 public class CustomerServiceImpl implements CustomerService {
 
 	@Autowired
-	private CustomerMapper customerMapper;
+	public CustomerMapper customerMapper;
 
 	@Override
 	public Customer login(Integer phoneNumber) {
@@ -31,14 +33,16 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override // 判断用户名是否存在
-	public Boolean isPresenceCustomer(String email) {
+	public Customer isPresenceCustomer(String email) {
 		CustomerExample customerExample = new CustomerExample();
-		customerExample.setOrderByClause(email);
+//		customerExample.setOrderByClause(email);
+		Criteria criteria = customerExample.createCriteria();
+		criteria.andCemailEqualTo(email);
 		List<Customer> customer = customerMapper.selectByExample(customerExample);
 		if (customer.size() == 1) {// 查到一个
-			return true;
+			return customer.get(0);
 		} else {
-			return false;
+			return null;
 		}
 	}
 

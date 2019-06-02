@@ -21,7 +21,8 @@
 						<div class="col-sm-8">
 								<input type="email" id="email" class="form-control" placeholder="Email"/>
 						</div>
-						<label id="lab_email" class="col-sm-2"></label>
+						<label class="col-sm-2">&nbsp;</label>
+						<label id="lab_email" class="col-sm-5">&nbsp;</label>
 				</div>
 				
 				<div class="form-group row">
@@ -29,7 +30,8 @@
 						<div class="col-sm-8">
 								<input type="password" id="password" class="form-control" placeholder="Password">
 						</div>
-						<label id="lab_password"  class="col-sm-2"></label>
+						<label class="col-sm-2">&nbsp;</label>
+						<label id="lab_password" class="col-sm-5">&nbsp;</label>
 				</div>
 				
 				

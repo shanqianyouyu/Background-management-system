@@ -1,6 +1,5 @@
 package com.ctgu.service;
 
-import org.springframework.stereotype.Service;
 
 import com.ctgu.pojo.Customer;
 
@@ -14,9 +13,9 @@ import com.ctgu.pojo.Customer;
  * @date: 2019年5月31日 下午9:44:57
  */
 
-@Service
+
 public interface CustomerService {
 	Customer login(Integer phoneNumber);
 
-	Boolean isPresenceCustomer(String eamil);
+	Customer isPresenceCustomer(String eamil);
 }

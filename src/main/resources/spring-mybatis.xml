@@ -36,10 +36,10 @@
 			value="classpath:com/ctgu/dao/mappers/*.xml"></property>
 	</bean>
 
-	<bean id="mappers"
-		class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+
+	<bean id="mappers" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="sqlSessionFactoryBeanName"
 			value="sqlSessionFactory"></property>
-		<property name="basePackage" value="com.ctgu.dao"></property>
+		<property name="basePackage" value="com.ctgu.dao.mappers"></property>
 	</bean>
 </beans>

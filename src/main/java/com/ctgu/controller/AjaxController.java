@@ -7,7 +7,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.ctgu.pojo.Customer;
 import com.ctgu.service.CustomerService;
+
+import net.sf.json.JSONObject;
 
 /**
  * Copyright © 2019 eSunny Info. Tech Ltd. All rights reserved.
@@ -22,17 +25,19 @@ import com.ctgu.service.CustomerService;
 @RequestMapping("/ajax")
 public class AjaxController {
 
-//	@Autowired
-//	private CustomerService customerService;
+	@Autowired
+	public CustomerService customerService;
 
 	@RequestMapping("/email")
 	@ResponseBody
 	public String username(@RequestBody String email) {
+		JSONObject json = JSONObject.fromObject(email);
 
+		email = json.getString("email");
 		System.out.println("email: " + email);
-//		Boolean result = customerService.isPresenceCustomer(email);
-//		return result;
-		return email;
+		Customer customer = customerService.isPresenceCustomer(email);
+		return customer == null ? "false" : "true";// 为空返回false 否则返回true
+//		return email;
 	}
 
 	@RequestMapping("/password")
