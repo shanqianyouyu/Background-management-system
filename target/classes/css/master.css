@@ -1,0 +1,228 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+.all{
+	position: relative;
+}
+/*整体框架*/
+.head{
+	margin: 0 auto;
+	width: 100%;
+	background-color: rgb(59,103,174);
+}
+.headNav{
+	margin: 0 auto;
+	width: 100%;
+}
+.leftNav{
+	float: left;
+	height: 800px;
+}
+.context{
+	float: right;
+	height: 800px;
+}
+
+/*head部分*/
+.head>p{
+	font-size: 17px;
+	line-height: 1;
+	font-weight: 600;
+	padding: 15px 20px;
+	margin: 0;
+	color: #fff;
+	width: 300px;
+	display: inline-block;
+}
+.headRight{
+	display: inline-block;
+	float: right;
+	width: 500px;
+}
+.info{
+	float: left;
+	margin: 10px 20px;
+	padding: 3px;
+	border-radius: 5px;
+	border: 1px solid rgb(59,103,174);
+}
+.headRight>ul>li{
+	float: right;
+	list-style: none;
+	margin: -8px 20px;
+}
+.headRight a{
+	color: #fff;
+}
+
+
+
+
+/*headNav导航栏部分*/
+.headNav ul{
+	background-color: rgb(71,134,195);
+}
+.headNav a:focus, .headNav a:hover{
+	color: #3b3939;
+}
+.headNav a{
+	color: #fff;
+}
+.headNav .nav-tabs{
+	border-bottom: 2px solid rgb(54,90,151);
+}
+.headNav .nav-tabs > li{
+	margin-bottom: -2px;
+	padding-top: 10px;
+}
+.headNav .nav > li > a{
+	padding: 7px 15px;
+}
+.headNav .nav-tabs > li.active > a, .headNav .nav-tabs > li.active > a:focus,.headNav .nav-tabs > li.active > a:hover{
+	border: 2px solid rgb(54,90,151);
+	border-bottom-color: transparent;
+}
+
+
+/*leftNav折叠部分导航栏设置*/
+.panel-heading{
+	height: 40px;
+}
+.leftNav ul{
+	background: rgb(226,235,244)
+}
+.col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9{
+	padding: 0;
+}
+.leftNav a:focus, .leftNav a:hover{
+	text-decoration: none;
+}
+.leftNav .glyphicon{
+	top: 0;
+	font-size: 12px;
+	color: #ccc;
+	margin-right: 8px;
+}
+.leftNav .glyphicon-edit{
+	color: #000;
+}
+.leftNav .nav-tabs{
+	border: none;
+}
+.leftNav .nav-tabs > li{
+	width: 100%;
+}
+.leftNav .nav-tabs > li> a{
+	padding: 8px 0 8px 35px;
+	margin: 0;
+	border-radius: 0;
+	color: #3b3939;
+}
+.leftNav .nav-tabs > li:hover > a,.leftNav .nav-tabs > li.active > a, .leftNav .nav-tabs > li.active > a:focus, .leftNav .nav-tabs > li.active > a:hover{
+	background-color: rgb(57,165,205);
+	margin: 0;
+	border-radius: 0;
+	padding: 8px 0 8px 35px;
+	border: 1px solid rgb(57,165,205);
+	color: #fff;
+}
+.leftNav .nav-tabs > li > a:hover{
+	border: 1px solid rgb(57,165,205);
+}
+.leftNav .panel{
+	box-shadow: 0 0px 10px rgba(164, 156, 156, 0.5);
+	border-radius: 0;
+}
+.leftNav .panel-group .panel + .panel{
+	margin: 0;
+}
+.leftNav .panel-body{
+	padding: 0;
+}
+.leftNav .panel-heading{
+	padding: 8px 15px;
+}
+.leftNav .panel-title{
+	font-size: 15px;
+}
+.leftNav .panel-title>a{
+	display: inline-block;
+	width: 100%;
+}
+
+
+/*context内容*/
+.context .fade{
+	display: none;
+}
+.context .fade.in{
+	display: block;
+}
+
+/*内容二*/
+.part2{
+	padding-top: 2%;
+	padding-left: 5%;
+	padding-right: 8%;
+}
+.part2 h1{
+	font-size: 40px;
+}
+.part2 h2{
+	font-size: 25px;
+	font-weight: 20px;
+}
+.part2 p{
+	font-size:  18px;
+}
+.part2 ul{
+	margin-top: 20px;
+	padding-left: 10%;
+	margin-bottom: 20px;
+}
+.part2 ul li{
+	font-size: 20px;
+}
+
+/*底部*/
+.last{
+	padding-bottom: 2%;
+	padding-top: 3%;
+	text-align: center;
+	height: 150px;
+	background-color: #39a5cd;
+	width: 100%;
+	position: absolute;
+	bottom: 0px;
+}
+.last p{color: #f9f1f1}
+.jelly {
+	z-index: 1;
+	font-size: inherit;
+	font-family: inherit;
+	color: white;
+	padding: 0.5em 1em;
+	outline: none;
+	border: none;
+	/*background-color: hsl(236, 32%, 26%);*/
+}
+.jelly:hover {
+	cursor: pointer;
+	animation: jelly 0.5s;
+}
+@keyframes jelly {
+	0%,
+	100% {
+		transform: scale(1, 1);
+	}
+	25% {
+		transform: scale(0.9, 1.1);
+	}
+	50% {
+		transform: scale(1.1, 0.9);
+	}
+	75% {
+		transform: scale(0.95, 1.05);
+	}
+}

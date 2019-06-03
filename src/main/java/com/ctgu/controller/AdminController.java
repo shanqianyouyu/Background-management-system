@@ -1,5 +1,8 @@
 package com.ctgu.controller;
 
+import java.util.List;
+
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -35,7 +38,7 @@ public class AdminController {
 		JSONObject json = JSONObject.fromObject(data);
 		String email = json.getString("Cemail");
 		String password = json.getString("Cnumber");
-		Admin admin = adminService.isPresenceAdmin(email);
+		Admin admin = adminService.getAdminByEmail(email);
 		String status = null;
 		if (admin != null && admin.getPassword().equals(password)) {
 			status = "1";
@@ -49,12 +52,23 @@ public class AdminController {
 	@RequestMapping("/success")
 	public String success() {
 		System.out.println("跳转...");
-		return "success";
+		return "master";
 	}
 
 	@RequestMapping("/error")
 	public String error() {
 		System.out.println("滚啊...");
 		return "error";
+	}
+
+	/*
+	 * select * from admin limit 0,10;
+	 */
+
+	@RequestMapping("/admins")
+	@ResponseBody
+	public List<Admin> admins() {
+		List<Admin> list = adminService.getAdmins();
+		return list;
 	}
 }

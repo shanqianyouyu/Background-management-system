@@ -7,8 +7,7 @@ body{
     width: 100vw;
     /*background-color: #fcfbff;*/
     position: relative;
-    background-image: url(../img/login-background.jpg);
-    background-repeat: no-repeat;
+    background:  url(../img/login.png);
 }
 label {
     padding-top: 10px;

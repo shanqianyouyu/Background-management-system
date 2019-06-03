@@ -34,7 +34,7 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override // 判断用户名是否存在
-	public Admin isPresenceAdmin(String email) {
+	public Admin getAdminByEmail(String email) {
 		AdminExample adminExample = new AdminExample();
 		Criteria criteria = adminExample.createCriteria();
 		criteria.andPhonenumberEqualTo(email);
@@ -44,6 +44,14 @@ public class AdminServiceImpl implements AdminService {
 		} else {
 			return null;
 		}
+	}
+
+	@Override
+	public List<Admin> getAdmins() {
+		AdminExample adminExample = new AdminExample();
+		Criteria criteria = adminExample.createCriteria();
+		List<Admin> admin = adminMapper.selectByExample(adminExample);
+		return admin;
 	}
 
 }

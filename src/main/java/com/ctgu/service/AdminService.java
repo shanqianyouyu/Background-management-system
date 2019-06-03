@@ -1,6 +1,8 @@
 package com.ctgu.service;
 
 
+import java.util.List;
+
 import com.ctgu.pojo.Admin;
 import com.ctgu.pojo.Customer;
 
@@ -18,5 +20,7 @@ import com.ctgu.pojo.Customer;
 public interface AdminService {
 	Admin login(Integer phoneNumber);
 
-	Admin isPresenceAdmin(String eamil);
+	Admin getAdminByEmail(String eamil);
+	
+	List<Admin> getAdmins();
 }

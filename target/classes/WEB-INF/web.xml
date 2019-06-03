@@ -11,9 +11,8 @@
 	
 	<context-param> <!--全局范围内环境参数初始化-->  
         <param-name>contextConfigLocation</param-name>          <!--参数名称-->  
-        <param-value>classpath:spring-mybatis.xml</param-value>     <!--参数取值-->  
+        <param-value>classpath:*-mybatis.xml</param-value>     <!--参数取值-->  
     </context-param> 
-
 	<context-param>
 		<param-name>log4jConfigLocation</param-name>
 	  	<param-value>classpath:log4j.properties</param-value>
