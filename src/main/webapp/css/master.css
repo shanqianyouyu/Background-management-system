@@ -17,12 +17,13 @@
 }
 .leftNav{
 	float: left;
-	height: 800px;
+	height: 100vh;
 }
 .context{
 	float: right;
-	height: 800px;
+	height: 100vh;
 }
+
 
 /*head部分*/
 .head>p{
@@ -171,7 +172,7 @@
 }
 .part2 h2{
 	font-size: 25px;
-	font-weight: 20px;
+	/*font-weight: 20;*/
 }
 .part2 p{
 	font-size:  18px;
@@ -225,4 +226,7 @@
 	75% {
 		transform: scale(0.95, 1.05);
 	}
+}
+table {
+	/*padding-left: 10%;*/
 }

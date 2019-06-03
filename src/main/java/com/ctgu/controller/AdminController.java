@@ -5,12 +5,14 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ctgu.pojo.Admin;
 import com.ctgu.pojo.Customer;
+import com.ctgu.pojo.UIDataGridResult;
 import com.ctgu.service.AdminService;
 
 import net.sf.json.JSONObject;
@@ -62,13 +64,14 @@ public class AdminController {
 	}
 
 	/*
-	 * select * from admin limit 0,10;
+	 * 一页10个
 	 */
-
 	@RequestMapping("/admins")
 	@ResponseBody
-	public List<Admin> admins() {
-		List<Admin> list = adminService.getAdmins();
-		return list;
+	public UIDataGridResult admins(@RequestBody String pages) {
+		System.out.println(pages);
+		int rows = 30;
+		UIDataGridResult result = adminService.getAdminList(1, rows);
+		return result;
 	}
 }

@@ -10,7 +10,10 @@ import com.ctgu.dao.mappers.CustomerMapper;
 import com.ctgu.pojo.Admin;
 import com.ctgu.pojo.AdminExample;
 import com.ctgu.pojo.AdminExample.Criteria;
+import com.ctgu.pojo.UIDataGridResult;
 import com.ctgu.service.AdminService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 
 /**
  * Copyright © 2019 eSunny Info. Tech Ltd. All rights reserved.
@@ -33,7 +36,7 @@ public class AdminServiceImpl implements AdminService {
 		return admin;
 	}
 
-	@Override // 判断用户名是否存在
+	@Override // 根据邮箱取用户
 	public Admin getAdminByEmail(String email) {
 		AdminExample adminExample = new AdminExample();
 		Criteria criteria = adminExample.createCriteria();
@@ -52,6 +55,22 @@ public class AdminServiceImpl implements AdminService {
 		Criteria criteria = adminExample.createCriteria();
 		List<Admin> admin = adminMapper.selectByExample(adminExample);
 		return admin;
+	}
+
+	@Override
+	public UIDataGridResult getAdminList(int pages, int rows) {
+		// 分页处理
+		PageHelper.startPage(pages, rows);
+		// 执行查询
+		AdminExample example = new AdminExample();
+		List<Admin> list = adminMapper.selectByExample(example);
+		// 取分页信息
+		PageInfo<Admin> pageInfo = new PageInfo<>(list);
+		// 返回处理结果
+		UIDataGridResult result = new UIDataGridResult();
+		result.setTotal(pageInfo.getTotal());
+		result.setRows(list);
+		return result;
 	}
 
 }
