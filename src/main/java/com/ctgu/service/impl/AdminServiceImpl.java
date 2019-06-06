@@ -110,4 +110,19 @@ public class AdminServiceImpl implements AdminService {
 		return true;
 	}
 
+	@Override
+	public Boolean updateAdmin(Admin admin) {
+		AdminExample example = new AdminExample();
+		Criteria criteria = example.createCriteria();
+		criteria.andLoginnameEqualTo(admin.getLoginname());
+		admin.setLoginname(null);
+		try {
+			adminMapper.updateByExampleSelective(admin, example);
+//			adminMapper.updateByExample(admin, example);
+		} catch (Exception e) {
+			return false;
+		}
+		return true;
+	}
+
 }

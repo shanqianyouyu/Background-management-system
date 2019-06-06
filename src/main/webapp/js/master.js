@@ -113,6 +113,18 @@ $look.on('click', function () {
             },
             //关闭弹窗后执行
             end: function () {
+            	$('#adminLoginname').attr("disabled", false);
+                $('#adminPassword').attr("disabled", false);
+                $('#adminName').attr("disabled", false);
+                $('#adminIdentity').attr("disabled", false);
+                $('#adminPhoneNumber').attr("disabled", false);
+                
+                $('#adminLoginname').val("");
+                $('#adminPassword').val("");
+                $('#adminName').val("");
+                $('#adminIdentity').val("");
+                $('#adminPhoneNumber').val("");
+            	
                 $('#commit').css("display", "inline-block");
                 $('#cancel').css("display", "inline-block");
                 console.log("查看用户...");
@@ -121,7 +133,6 @@ $look.on('click', function () {
             cancel: function () {
                 $(":input").val("");
             }
-            // content: 'edit.html?id=' + id + '&name=' + name + '&price=' + price + '&type=look'
         });
     })
 });
@@ -129,24 +140,57 @@ $look.on('click', function () {
 //编辑
 $edit.on('click', function () {
     var row = getSelections()[0];
-    var id = row.id;
-    var name = row.name;
-    var price = row.price;
 
     layui.use('layer', function () {
-        layer.open({
-            type: 2,
+        var index = layer.open({
+            type: 1,
             title: '编辑商品',
             shadeClose: false,
             shade: 0.8,
             area: ['50%', '60%'],
-            content: 'edit.html?id=' + id + '&name=' + name + '&price=' + price,
+            content: $('#layer-admin'),
+            // content: 'edit.html?id=' + id + '&name=' + name + '&price=' + price,
+            success: function () {
+                $('#layer-admin').css("padding", "10px");
+                $('#layer-admin > .input-group').css("padding", "10px");
+
+                $('#adminLoginname').val(row.loginname);
+                $('#adminPassword').val(row.password);
+                $('#adminName').val(row.name);
+                $('#adminIdentity').val(row.identity);
+                $('#adminPhoneNumber').val(row.phonenumber);
+
+                $('#adminLoginname').attr("disabled", true);
+
+                $(document).on('click', '#commit', function () {
+                    //修改事件
+                    updateItem(JSON.stringify({
+                            loginname: $('#adminLoginname').val(),
+                            password: $('#adminPassword').val(),
+                            name: $('#adminName').val(),
+                            identity: $('#adminIdentity').val(),
+                            phonenumber: $('#adminPhoneNumber').val()
+                        }),
+                        "/crmSys/admin/update", "POST"
+                    );
+//                    $('#refresh').trigger("click");
+//                    $table.bootstrapTable('refresh');
+                    layer.close(index);
+                });
+
+            },
             end: function () { //最后执行reload
-                location.reload();
+            	$('#adminLoginname').attr("disabled", false);
+            	$('#adminLoginname').val("");
+                $('#adminPassword').val("");
+                $('#adminName').val("");
+                $('#adminIdentity').val("");
+                $('#adminPhoneNumber').val("");
             }
         });
     })
 });
+
 //删除
 $delete.on('click', function () {
     var ids = getSelections();

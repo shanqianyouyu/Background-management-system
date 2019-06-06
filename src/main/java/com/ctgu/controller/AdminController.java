@@ -114,4 +114,12 @@ public class AdminController {
 		String jsonData = "{\"status\" :\"" + status + "\"}";
 		return jsonData;
 	}
+
+	@RequestMapping("/update")
+	@ResponseBody
+	public String update(@RequestBody Admin admin) {
+		Boolean status = adminService.updateAdmin(admin);
+		String jsonData = "{\"status\" :\"" + status + "\"}";
+		return jsonData;
+	}
 }

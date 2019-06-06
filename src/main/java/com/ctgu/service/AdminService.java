@@ -32,4 +32,6 @@ public interface AdminService {
 	
 	//删除
 	Boolean deleteAdmin(Admin admin);
+
+	Boolean updateAdmin(Admin admin);
 }
