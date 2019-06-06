@@ -127,6 +127,12 @@ $delete.on('click', function () {
         layer.confirm('您是否要删除当前 ' + ids.length + '条数据？', {
             btn: ['是', '否']
         }, function () {
+            console.log("打印删除数组" + ids[0].loginname);
+            deleteItem(JSON.stringify({
+                    loginname: ids[0].loginname
+                }
+            ), "/crmSys/admin/delete", "POST");
+            console.log("before...");
             delServer(ids);
         });
     })

@@ -29,4 +29,7 @@ public interface AdminService {
 
 	// 查询登录名是否重复
 	Boolean checkLoginname(Admin admin);
+	
+	//删除
+	Boolean deleteAdmin(Admin admin);
 }

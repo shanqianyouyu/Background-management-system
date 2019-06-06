@@ -25,3 +25,30 @@ function checkRepeat(data, url, type, key) {
         }
     });
 }
+
+//ajax请求删除
+/*
+data : 要传的数据
+url: 请求路径
+type: 请求方式
+* */
+function deleteItem(data, url, type) {
+
+    $.ajax({
+        url: url,
+        type: type,
+        dataType: "json",
+        contentType: "application/json",
+        data: data,
+        success: function (res) {
+            if (res.status == "false") {
+                layer.msg("删除失败", {
+                    icon: 2,
+                    time: 1000 //1秒关闭（如果不配置，默认是3秒）
+                });
+            }
+        },
+        error: function () {
+        }
+    });
+}

@@ -64,7 +64,7 @@ public class AdminController {
 		return "error";
 	}
 
-	/*
+	/**
 	 * 一页10个@RequestBody String pages
 	 */
 	@RequestMapping("/admins")
@@ -82,23 +82,35 @@ public class AdminController {
 	public String add(@RequestBody Admin admin) {
 		admin.setCreatedate(new Date());
 		String status = null;
+		String jsonData = null;
 		try {
-
 			adminService.addAdmin(admin);
 			status = "true";
 		} catch (Exception e) {
 			status = "false";
-		} finally {
-			String jsonData = "{\"status\" :\"" + status + "\"}";
+			jsonData = "{\"status\" :\"" + status + "\"}";
 			return jsonData;
 		}
+		jsonData = "{\"status\" :\"" + status + "\"}";
+		return jsonData;
 	}
 
+	/**
+	 * 判断查重
+	 */
 	@RequestMapping("/checkLoginName")
 	@ResponseBody
 	public String checkLoginName(@RequestBody Admin admin) {
 		Boolean status = adminService.checkLoginname(admin);
 		System.out.println("check: " + status);
+		String jsonData = "{\"status\" :\"" + status + "\"}";
+		return jsonData;
+	}
+
+	@RequestMapping("/delete")
+	@ResponseBody
+	public String delete(@RequestBody Admin admin) {
+		Boolean status = adminService.deleteAdmin(admin);
 		String jsonData = "{\"status\" :\"" + status + "\"}";
 		return jsonData;
 	}

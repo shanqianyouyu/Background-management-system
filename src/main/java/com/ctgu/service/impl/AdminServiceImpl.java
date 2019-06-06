@@ -96,4 +96,18 @@ public class AdminServiceImpl implements AdminService {
 			return true;
 	}
 
+	@Override
+	public Boolean deleteAdmin(Admin admin) {
+		AdminExample adminExample = new AdminExample();
+		Criteria criteria = adminExample.createCriteria();
+		criteria.andLoginnameEqualTo(admin.getLoginname());
+//		List<Admin> ans = adminMapper.selectByExample(adminExample);
+		try {
+			adminMapper.deleteByExample(adminExample);
+		} catch (Exception e) {
+			return false;
+		}
+		return true;
+	}
+
 }
