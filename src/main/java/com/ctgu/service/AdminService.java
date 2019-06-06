@@ -24,4 +24,9 @@ public interface AdminService {
 	List<Admin> getAdmins();
 
 	UIDataGridResult getAdminList(int pages, int rows);
+
+	boolean addAdmin(Admin admin);
+
+	// 查询登录名是否重复
+	Boolean checkLoginname(Admin admin);
 }

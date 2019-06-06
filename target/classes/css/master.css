@@ -230,3 +230,6 @@
 table {
 	/*padding-left: 10%;*/
 }
+.layer-admin {
+    display: none;
+}

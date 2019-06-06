@@ -1,5 +1,6 @@
 package com.ctgu.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -64,14 +65,41 @@ public class AdminController {
 	}
 
 	/*
-	 * 一页10个
+	 * 一页10个@RequestBody String pages
 	 */
 	@RequestMapping("/admins")
 	@ResponseBody
-	public UIDataGridResult admins(@RequestBody String pages) {
-		System.out.println(pages);
+	public UIDataGridResult admins() {
+//		System.out.println(pages);
 		int rows = 30;
 		UIDataGridResult result = adminService.getAdminList(1, rows);
+		System.out.println(result);
 		return result;
+	}
+
+	@RequestMapping("/add")
+	@ResponseBody
+	public String add(@RequestBody Admin admin) {
+		admin.setCreatedate(new Date());
+		String status = null;
+		try {
+
+			adminService.addAdmin(admin);
+			status = "true";
+		} catch (Exception e) {
+			status = "false";
+		} finally {
+			String jsonData = "{\"status\" :\"" + status + "\"}";
+			return jsonData;
+		}
+	}
+
+	@RequestMapping("/checkLoginName")
+	@ResponseBody
+	public String checkLoginName(@RequestBody Admin admin) {
+		Boolean status = adminService.checkLoginname(admin);
+		System.out.println("check: " + status);
+		String jsonData = "{\"status\" :\"" + status + "\"}";
+		return jsonData;
 	}
 }

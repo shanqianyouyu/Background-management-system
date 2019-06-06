@@ -69,8 +69,31 @@ public class AdminServiceImpl implements AdminService {
 		// 返回处理结果
 		UIDataGridResult result = new UIDataGridResult();
 		result.setTotal(pageInfo.getTotal());
-		result.setRows(list);
+		result.setArray(list);
 		return result;
+	}
+
+	@Override
+	public boolean addAdmin(Admin admin) {
+		try {
+			adminMapper.insert(admin);
+		} catch (Exception e) {
+			return false;
+		}
+		return true;
+	}
+
+	// 根据loginname查找用户
+	@Override
+	public Boolean checkLoginname(Admin admin) {
+		AdminExample adminExample = new AdminExample();
+		Criteria criteria = adminExample.createCriteria();
+		criteria.andLoginnameEqualTo(admin.getLoginname());
+		List<Admin> ans = adminMapper.selectByExample(adminExample);
+		if (ans.size() == 0)
+			return false;
+		else
+			return true;
 	}
 
 }

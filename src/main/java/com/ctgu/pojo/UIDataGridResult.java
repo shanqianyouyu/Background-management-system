@@ -14,7 +14,9 @@ import java.util.List;
 
 public class UIDataGridResult {
 	private long total;
-	private List<?> rows;
+	private int code = 0;
+	private String message = "success";
+	private List<?> array;
 
 	public long getTotal() {
 		return total;
@@ -24,12 +26,12 @@ public class UIDataGridResult {
 		this.total = total;
 	}
 
-	public List<?> getRows() {
-		return rows;
+	public List<?> getArray() {
+		return array;
 	}
 
-	public void setRows(List<?> rows) {
-		this.rows = rows;
+	public void setArray(List<?> array) {
+		this.array = array;
 	}
 
 }
