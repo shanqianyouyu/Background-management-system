@@ -17,8 +17,6 @@ window.onload = function () {
         $('.context').css("height", parseInt(content) - parseInt(head));
     }
 
-
-
 //bootstrap-table
     $('#adminQuery').on('click', function () {
     })
@@ -37,7 +35,6 @@ function ajaxRequest(params) {
                 total: rs.total,
                 rows: message
             });
-
             //debugger;
         },
         error: function (rs) {
@@ -84,21 +81,51 @@ $refresh.on('click', function () {
 //查看
 $look.on('click', function () {
     var row = getSelections()[0];
-    var id = row.id;
-    var name = row.name;
-    var price = row.price; //debugger;
-
+    console.dir("row: " + row);
     layui.use('layer', function () {
-        layer.open({
-            type: 2,
-            title: '查看商品',
-            shadeClose: false,
+        var index = layer.open({
+            type: 1,
+            title: '查看用户',
+            shadeClose: true,
             shade: 0.8,
-            area: ['50%', '60%'],
-            content: 'edit.html?id=' + id + '&name=' + name + '&price=' + price + '&type=look'
+            area: ['50%', '350px'],
+            content: $('#layer-admin'),
+            success: function () {
+                console.log("查看...");
+                $('#adminLoginname').val(row.loginname);
+                $('#adminPassword').val(row.password);
+                $('#adminName').val(row.name);
+                $('#adminIdentity').val(row.identity);
+                $('#adminPhoneNumber').val(row.phonenumber);
+
+                $('#adminLoginname').attr("disabled", true);
+                $('#adminPassword').attr("disabled", true);
+                $('#adminName').attr("disabled", true);
+                $('#adminIdentity').attr("disabled", true);
+                $('#adminPhoneNumber').attr("disabled", true);
+                
+                $('#commit').css("display", "none");
+                $('#cancel').css("display", "none");
+
+                $('#layer-admin').css("padding", "10px");
+                $('#layer-admin > .input-group').css("padding", "10px");
+
+            },
+            //关闭弹窗后执行
+            end: function () {
+                $('#commit').css("display", "inline-block");
+                $('#cancel').css("display", "inline-block");
+                console.log("查看用户...");
+            },
+            //右上角关闭事件
+            cancel: function () {
+                $(":input").val("");
+            }
+            // content: 'edit.html?id=' + id + '&name=' + name + '&price=' + price + '&type=look'
         });
     })
 });
+
 //编辑
 $edit.on('click', function () {
     var row = getSelections()[0];
@@ -160,10 +187,10 @@ layui.use("layer", function () {
             area: ['550px', '480px'],
             content: $('#layer-admin'),
             success: function () {
+            	 $('#layer-admin').css("padding", "10px");
+                 $('#layer-admin > .input-group').css("padding", "10px");
                 //显示结点
                 $('#layer-admin').css("display", 'block');
-                //添加padding
-                $('div').css("padding", '10px');
 
                 // 窗口关闭事件
                 $(document).on('click', '#cancel', function () {
