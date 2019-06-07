@@ -172,7 +172,7 @@
 		<!--主体内容-->
 		<div class="context col-xs-10 tab-content" id="mtTabContent">
 				<div class="tab-pane fade in active" id="context1">
-						
+						<!--  
 						<form id="form1" action="" method="get" class="form-inline">
 								<div class="form-group">
 										<label class="control-label ">ID：</label>
@@ -182,20 +182,12 @@
 										<label class="control-label ">Name：</label>
 										<input type="text" id="name" class="form-control" name="name"/>
 								</div>
-								<!--<div class="form-group">-->
-										<!--<label class="control-label ">Price：</label>-->
-										<!--&lt;!&ndash;<input type="text" id="price" class="form-control" name="price" />&ndash;&gt;-->
-										<!--<select class="form-control" id="price" name="price">-->
-												<!--<option value="0">请选择</option>-->
-												<!--<option value="1">$1</option>-->
-												<!--<option value="2">$2</option>-->
-												<!--<option value="3">$3</option>-->
-												<!--<option value="4">$4</option>-->
-										<!--</select>-->
-								<!--</div>-->
+								
 								<input type="submit" class="btn btn-primary" value="搜索"/>
 						</form>
+						
 						<br/>
+						-->
 								<div id="toolbar" class="btn-group">
 										<button class="btn btn-success" id="add">新增</button>
 										<button class="btn btn-warning" id="edit">编辑</button>
@@ -204,10 +196,14 @@
 										<button class="btn btn-primary" id="refresh">刷新</button>
 								</div>
 								<!--bootstrap-table表格-->
-								<table id="table" data-toggle="table" data-ajax="ajaxRequest"
+						<!--  
+								<table id="table" data-toggle="table" 
+									   data-ajax="ajaxRequest"
 								       data-search="false" data-side-pagination="client"
 								       data-pagination="true" data-click-to-select="true"
-								       data-single-select="false" data-page-size="10" data-toolbar="#toolbar">
+								       data-single-select="false" data-page-size="10" data-toolbar="#toolbar"
+								       data-show-columns="true" data-show-search="true"
+								       >
 										<thead style="background:#efefef;">
 										<tr>
 												<th data-checkbox="true"></th>
@@ -219,6 +215,8 @@
 										</tr>
 										</thead>
 								</table>
+						-->
+						<table id="adminTable"></table>
 				</div>
 				
 				<!--context2-->

@@ -233,3 +233,6 @@ table {
 .layer-admin {
     display: none;
 }
+#refresh {
+    display: none;
+}
