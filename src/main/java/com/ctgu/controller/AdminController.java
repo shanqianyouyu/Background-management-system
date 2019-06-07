@@ -36,18 +36,20 @@ public class AdminController {
 
 	@RequestMapping("/login")
 	@ResponseBody
-	public String login(@RequestBody String data) {
-		System.out.println(data);
-		JSONObject json = JSONObject.fromObject(data);
-		String email = json.getString("Cemail");
-		String password = json.getString("Cnumber");
-		Admin admin = adminService.getAdminByEmail(email);
+	public String login(@RequestBody Admin admin) {
+//		System.out.println(data);
+//		JSONObject json = JSONObject.fromObject(data);
+//		String email = json.getString("Cemail");
+//		String password = json.getString("Cnumber");
+//		Admin admin = adminService.getAdminByEmail(email);
 		String status = null;
-		if (admin != null && admin.getPassword().equals(password)) {
+		Admin ans = adminService.gerAdminByLoginNumber(admin.getLoginname());
+		if (ans != null && ans.getPassword().equals(admin.getPassword())) {
 			status = "1";
 		} else {
 			status = "0";
 		}
+
 		String jsonData = "{\"status\" :\"" + status + "\"}";
 		return jsonData;
 	}
@@ -71,7 +73,7 @@ public class AdminController {
 	@ResponseBody
 	public UIDataGridResult admins() {
 //		System.out.println(pages);
-		int rows = 30;
+		int rows = 10000;
 		UIDataGridResult result = adminService.getAdminList(1, rows);
 		System.out.println(result);
 		return result;

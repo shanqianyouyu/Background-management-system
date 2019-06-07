@@ -31,18 +31,22 @@ public class AdminServiceImpl implements AdminService {
 	public AdminMapper adminMapper;
 
 	@Override
-	public Admin login(Integer phoneNumber) {
+	public Admin getAdminByPhoneNumber(Integer phoneNumber) {
 		Admin admin = adminMapper.selectByPrimaryKey(phoneNumber);
 		return admin;
 	}
 
-	@Override // 根据邮箱取用户
+	/**
+	 * 根据邮箱取用户
+	 */
+	@Override
 	public Admin getAdminByEmail(String email) {
 		AdminExample adminExample = new AdminExample();
 		Criteria criteria = adminExample.createCriteria();
 		criteria.andPhonenumberEqualTo(email);
 		List<Admin> admin = adminMapper.selectByExample(adminExample);
-		if (admin.size() == 1) {// 查到一个
+		// 查到一个
+		if (admin.size() == 1) {
 			return admin.get(0);
 		} else {
 			return null;
@@ -83,17 +87,24 @@ public class AdminServiceImpl implements AdminService {
 		return true;
 	}
 
-	// 根据loginname查找用户
+	/**
+	 * 根据loginname查找用户
+	 * 
+	 * 传入一个admin只含loginname
+	 */
 	@Override
 	public Boolean checkLoginname(Admin admin) {
 		AdminExample adminExample = new AdminExample();
 		Criteria criteria = adminExample.createCriteria();
 		criteria.andLoginnameEqualTo(admin.getLoginname());
 		List<Admin> ans = adminMapper.selectByExample(adminExample);
-		if (ans.size() == 0)
+		if (ans.size() == 0) {
 			return false;
-		else
+
+		} else {
 			return true;
+
+		}
 	}
 
 	@Override
@@ -118,11 +129,28 @@ public class AdminServiceImpl implements AdminService {
 		admin.setLoginname(null);
 		try {
 			adminMapper.updateByExampleSelective(admin, example);
-//			adminMapper.updateByExample(admin, example);
 		} catch (Exception e) {
 			return false;
 		}
 		return true;
+	}
+
+	@Override
+	public Admin gerAdminByLoginNumber(String loginnumber) {
+		AdminExample example = new AdminExample();
+		Criteria criteria = example.createCriteria();
+		criteria.andLoginnameEqualTo(loginnumber);
+		Admin admin = null;
+		try {
+			List<Admin> admins = adminMapper.selectByExample(example);
+			if (admins.size() == 0) {
+				return null;
+			}
+			admin = admins.get(0);
+		} catch (Exception e) {
+			return null;
+		}
+		return admin;
 	}
 
 }
