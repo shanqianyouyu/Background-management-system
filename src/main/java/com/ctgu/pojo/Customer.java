@@ -2,84 +2,90 @@ package com.ctgu.pojo;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class Customer {
-    private Integer id;
+	private Integer id;
 
-    private String cnum;
+	private String cnum;
 
-    private String cname;
+	private String cname;
 
-    private String cnumber;
+	private String cnumber;
 
-    private String caddr;
+	private String caddr;
 
-    private Date createdate;
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+	private Date createdate;
 
-    private String cemail;
+	private String cemail;
 
-    private String crank;
+	private String crank;
 
-    public Integer getId() {
-        return id;
-    }
+	public Integer getId() {
+		return id;
+	}
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public String getCnum() {
-        return cnum;
-    }
+	public String getCnum() {
+		return cnum;
+	}
 
-    public void setCnum(String cnum) {
-        this.cnum = cnum == null ? null : cnum.trim();
-    }
+	public void setCnum(String cnum) {
+		this.cnum = cnum == null ? null : cnum.trim();
+	}
 
-    public String getCname() {
-        return cname;
-    }
+	public String getCname() {
+		return cname;
+	}
 
-    public void setCname(String cname) {
-        this.cname = cname == null ? null : cname.trim();
-    }
+	public void setCname(String cname) {
+		this.cname = cname == null ? null : cname.trim();
+	}
 
-    public String getCnumber() {
-        return cnumber;
-    }
+	public String getCnumber() {
+		return cnumber;
+	}
 
-    public void setCnumber(String cnumber) {
-        this.cnumber = cnumber == null ? null : cnumber.trim();
-    }
+	public void setCnumber(String cnumber) {
+		this.cnumber = cnumber == null ? null : cnumber.trim();
+	}
 
-    public String getCaddr() {
-        return caddr;
-    }
+	public String getCaddr() {
+		return caddr;
+	}
 
-    public void setCaddr(String caddr) {
-        this.caddr = caddr == null ? null : caddr.trim();
-    }
+	public void setCaddr(String caddr) {
+		this.caddr = caddr == null ? null : caddr.trim();
+	}
 
-    public Date getCreatedate() {
-        return createdate;
-    }
+	public Date getCreatedate() {
+		return createdate;
+	}
 
-    public void setCreatedate(Date createdate) {
-        this.createdate = createdate;
-    }
+	public void setCreatedate(Date createdate) {
+		this.createdate = createdate;
+	}
 
-    public String getCemail() {
-        return cemail;
-    }
+	public String getCemail() {
+		return cemail;
+	}
 
-    public void setCemail(String cemail) {
-        this.cemail = cemail == null ? null : cemail.trim();
-    }
+	public void setCemail(String cemail) {
+		this.cemail = cemail == null ? null : cemail.trim();
+	}
 
-    public String getCrank() {
-        return crank;
-    }
+	public String getCrank() {
+		return crank;
+	}
 
-    public void setCrank(String crank) {
-        this.crank = crank == null ? null : crank.trim();
-    }
+	public void setCrank(String crank) {
+		this.crank = crank == null ? null : crank.trim();
+	}
 }

@@ -1,8 +1,8 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html>
 <head>
 		<meta charset="utf-8">
-		<title>南通星辰</title>
+		<title>Chase的后台管理系统</title>
 		
 		<link rel="stylesheet" type="text/css" href="/crmSys/bootstrap/css/bootstrap.min.css">
 		<link rel="stylesheet" href="/crmSys/bootstrap/css/bootstrap-table.min.css">
@@ -55,7 +55,7 @@
 						
 						</div>
 						
-						<div class="panel panel-default">
+						<div id="customerClick" class="panel panel-default">
 								<div class="panel-heading">
 										<h4 class="panel-title">
 												<a class="jelly" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><span
@@ -66,7 +66,7 @@
 										<div class="panel-body">
 												<ul id="myTabTwo" class="nav nav-tabs">
 														<li class="active">
-																<a class="jelly" href="#context1" data-toggle="tab"><span
+																<a class="jelly" href="#context2" data-toggle="tab"><span
 																				class="glyphicon glyphicon-edit"></span>风险点状态</a>
 														</li>
 														<li>
@@ -221,12 +221,18 @@
 				
 				<!--context2-->
 				
-				<!--<div class="tab-pane fade" id="context123">-->
-				<!--<ul class="part2 list-group list-group-flush">-->
-				<!--<li class="list-group-item">Dapibus ac facilisis in</li>-->
-				<!--<li class="list-group-item">Vestibulum at eros</li>-->
-				<!--</ul>-->
-				<!--</div>-->
+				<div class="tab-pane fade" id="context2">
+						<ul class="part2 list-group list-group-flush">
+								<div id="toolbarCustomer" class="btn-group">
+										<button class="btn btn-success" id="addCustomer">新增</button>
+										<button class="btn btn-warning" id="editCustomer">编辑</button>
+										<button class="btn btn-info" id="lookCustomer">查看</button>
+										<button class="btn btn-danger" id="deleteCustomer">删除</button>
+										<button class="btn btn-primary" id="refreshCustomer">刷新</button>
+								</div>
+								<table id="tableCustomer"></table>
+						</ul>
+				</div>
 		</div>
 </div>
 <script src="/crmSys/bootstrap/js/jquery.min.js"></script>
@@ -239,6 +245,10 @@
 <script src="/crmSys/js/master.js"></script>
 <script type="text/javascript" src="/crmSys/js/master-min.js"></script>
 <script type="text/javascript" src="/crmSys/js/util.js"></script>
+<!--  -->
+<script type="text/javascript" src="/crmSys/js/customer.js"></script>
+
+
 <script type="text/javascript">
     $(function () {
         $('#collapseOne').collapse('hide');

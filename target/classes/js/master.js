@@ -10,8 +10,11 @@ var columns = [{
     field: 'name',
     title: '姓名'
 }, {
+	field: 'createdate',
+	title: '创建日期'
+},{
     field: 'phonenumber',
-    title: '手机号'
+    title: '邮箱'
 }, {
     field: 'identity',
     title: '身份',
@@ -20,6 +23,32 @@ var columns = [{
     field: 'identity',
     title: '身份',
     formatter: formatter
+}];
+
+var customercolumns = [{
+    checkbox: true
+}, {
+    field: 'cnum',
+    title: '客户编号'
+}, {
+    field: 'cname',
+    title: '姓名'
+}, {
+    field: 'cnumber',
+    title: '手机号'
+}, {
+    field: 'caddr',
+    title: '籍贯'
+}, {
+    field: 'createdate',
+    title: '创建日期'
+    // hidden: true
+}, {
+    field: 'cemail',
+    title: '邮箱'
+}, {
+    field: 'crank',
+    title: '级别'
 }];
 window.onload = function () {
     $(function () {
@@ -90,6 +119,65 @@ window.onload = function () {
     // //bootstrap-table
     // $('#adminQuery').on('click', function () {
     // })
+    
+    
+    
+    setTimeout(function(){
+		console.log("执行了延时函数...");
+		$('#customerClick').click(function(){
+			console.log("点击事件触发...");
+			$('#tableCustomer').bootstrapTable("destroy");
+			 $('#tableCustomer').bootstrapTable({
+			        columns: customercolumns,
+			        toolbar: '#toolbarCustomer',
+			        // url: "json/demo1.json",
+			        ajax: ajaxCustomer,
+			        method: 'GET', // 数据请求方式
+			        sidePagination: 'client',// 设置服务器端分页*********************
+			        search: true, // ******开启搜索框****//
+			        searchOnEnterKey: false, // ******回车后执行搜索****//
+			        pagination: true,// 开启分页
+			        pageNumber: 1, // 当前地基页
+			        pageSize: 10, // 每页显示数据条数
+			        striped: true,                      //是否显示行间隔色
+			        pageList: "[10, 20]",
+			        showRefresh: true,
+			        // toolbar: "#toolbar",
+			        showToggle: true,                    //是否显示详细视图和列表视图
+			        iconSize: 'outline',
+			        paginationPreText: "Previous",
+			        paginationNextText: "Next",
+			        paginationFirstText: "First",
+			        paginationLastText: "Last",
+			        showColumns: true,
+			        detailView: false,                   //是否显示父子表
+			        locale: "zh-CN",
+			        paginationHAlign: "left",
+			        paginationDetailHAlign: "right",
+			        trimOnSearch: true,
+			        // 这里设置表头样式
+			        theadClasses: "thead-dark",
+			        rowAttributes: function (row, index) {
+			            return {
+			                'data-toggle': 'popover',
+			                'data-placement': 'bottom',
+			                'data-trigger': 'hover',
+			                'data-index': index,
+			                'title': ['Index: ' + index,
+			                    '客户编号:  ' + row.Cnum,
+			                    '姓名:  ' + row.Cname,
+			                    '手机号:  ' + row.Cnumber,
+			                    '籍贯:  ' + row.Caddr,
+			                    '创建日期:  ' + row.createDate,
+			                    '邮箱:  ' + row.Cemail,
+			                    '级别:  ' + row.Crank
+			                ].join(', ')
+			            }
+			        }
+			    });
+		});
+	}, 20);
+    
 };
 
 // 自定义ajax方法
@@ -98,6 +186,7 @@ function ajaxRequest(params) {
     $.ajax({
         url: "/crmSys/admin/admins",
         type: "GET",
+        async:false,
         dataType: "json",
         success: function (rs) {
             var message = rs.array;

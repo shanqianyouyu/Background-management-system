@@ -89,3 +89,27 @@ function updateItem(data, url, type) {
         }
     });
 }
+
+/**
+ * 返回一个类型的所有的数据
+ * @param data
+ */
+function ajaxdatas(data,params) {
+    $.ajax({
+        url: "/crmSys/" + data + "/" + data + "s",
+        type: "GET",
+        dataType: "json",
+        success: function (rs) {
+            var message = rs.array;
+            // 注意，必须返回参数 params
+            params.success({ 
+                total: rs.total,
+                rows: message
+            });
+            // debugger;
+        },
+        error: function (rs) {
+            console.log(rs)
+        }
+    });
+}
