@@ -1,63 +1,24 @@
-var columns = [{
-    checkbox: true
-}, {
-    field: 'loginname',
-    title: '登录名'
-}, {
-    field: 'password',
-    title: '密码'
-}, {
-    field: 'name',
-    title: '姓名'
-}, {
-	field: 'createdate',
-	title: '创建日期'
-},{
-    field: 'phonenumber',
-    title: '邮箱'
-}, {
-    field: 'identity',
-    title: '身份',
-    hidden : true
-}, {
-    field: 'identity',
-    title: '身份',
-    formatter: formatter
-}];
-
-var customercolumns = [{
-    checkbox: true
-}, {
-    field: 'cnum',
-    title: '客户编号'
-}, {
-    field: 'cname',
-    title: '姓名'
-}, {
-    field: 'cnumber',
-    title: '手机号'
-}, {
-    field: 'caddr',
-    title: '籍贯'
-}, {
-    field: 'createdate',
-    title: '创建日期'
-    // hidden: true
-}, {
-    field: 'cemail',
-    title: '邮箱'
-}, {
-    field: 'crank',
-    title: '级别'
-}];
 window.onload = function () {
     $(function () {
         AdjustHeight();
+        $('#asdasd').editable({
+        	type: "text",                //编辑框的类型。支持text|textarea|select|date|checklist等
+        	title: "用户名",              //编辑框的标题
+        	disabled: false,             //是否禁用编辑
+        	emptytext: "空文本",          //空值的默认文本
+        	mode: "popup",              //编辑框的模式：支持popup和inline两种模式，默认是popup
+        	validate: function (value) { //字段验证
+        		if (!$.trim(value)) {
+        			return '不能为空';
+        		}
+        	}
+        });
     });
 
+    
     $(window).resize(function () {
         AdjustHeight();
-        console.log("1");
+//        console.log("1");
     });
 
     function AdjustHeight() {
@@ -68,27 +29,32 @@ window.onload = function () {
         $('.context').css("height", parseInt(content) - parseInt(head));
     }
 
-    $('#adminTable')
-        .bootstrapTable(
+    $('#adminTable').bootstrapTable(
             {
-                columns: columns,
-                // url: "json/demo1.json",
+                columns: admincolumns,
+//                editable: true, //是否开启编辑模式
                 ajax: ajaxRequest,
-                method: 'GET', // 数据请求方式
-                sidePagination: 'client',// 设置服务器端分页*********************
+                method: 'GET', 
+                showPaginationSwitch: true,
+                sidePagination: 'client',
                 search: true, // ******开启搜索框****//
                 searchOnEnterKey: false, // ******回车后执行搜索****//
                 pagination: true,// 开启分页
+                clickToSelect: true,
                 pageNumber: 1, // 当前地基页
                 pageSize: 10, // 每页显示数据条数
+                mode: "popup",
+//                smartDisplay:true,
+                showExport: true,                     //是否显示导出
+                exportDataType: "basic",
                 striped: true,                      //是否显示行间隔色
                 pageList: "[10, 20]",
                 showRefresh: true,
                 toolbar: "#toolbar",
                 showToggle:true,                    //是否显示详细视图和列表视图
                 iconSize: 'outline',
-                paginationPreText: "Previous",
-                paginationNextText: "Next",
+                paginationPreText: "<<",
+                paginationNextText: ">>",
                 paginationFirstText: "First",
                 paginationLastText: "Last",
                 showColumns: true,
@@ -98,7 +64,7 @@ window.onload = function () {
                 paginationDetailHAlign: "right",
                 trimOnSearch: true,
                 // 这里设置表头样式
-                theadClasses: "thead-dark",
+                theadClasses: "thead-dark",//这里设置表头样式
                 rowAttributes: function (row, index) {
                     return {
                         'data-toggle': 'popover',
@@ -113,7 +79,15 @@ window.onload = function () {
                             '手机号:  '+row.phonenumber,
                             '身份:  '+row.identity].join(', ')
                     }
-                }
+                },
+//                onClickCell: function(field, value, row, $element) { 
+//                	$element.attr('contenteditable', true); 
+//                	$element.blur(function() { 
+//                		let index = $element.parent().data('index'); 
+//                		let tdValue = $element.html(); 
+////                		saveData(index, field, tdValue); 
+//                		}) 
+//                		}
             });
 
     // //bootstrap-table
@@ -130,6 +104,7 @@ window.onload = function () {
 			 $('#tableCustomer').bootstrapTable({
 			        columns: customercolumns,
 			        toolbar: '#toolbarCustomer',
+			        showPaginationSwitch: true,
 			        // url: "json/demo1.json",
 			        ajax: ajaxCustomer,
 			        method: 'GET', // 数据请求方式
@@ -142,11 +117,10 @@ window.onload = function () {
 			        striped: true,                      //是否显示行间隔色
 			        pageList: "[10, 20]",
 			        showRefresh: true,
-			        // toolbar: "#toolbar",
 			        showToggle: true,                    //是否显示详细视图和列表视图
 			        iconSize: 'outline',
-			        paginationPreText: "Previous",
-			        paginationNextText: "Next",
+			        paginationPreText: "<<",
+			        paginationNextText: ">>",
 			        paginationFirstText: "First",
 			        paginationLastText: "Last",
 			        showColumns: true,
@@ -177,6 +151,27 @@ window.onload = function () {
 			    });
 		});
 	}, 20);
+    $('#supplierClick').click(function(){
+    	console.log("supplier...");
+//    	$('#tableSupplier').bootstrapTable("destroy");
+    	$("#tableSupplier").bootstrapTable($.tableSupplier);
+    });
+    
+    $('#productClick').click(function(){
+    	console.log("procuct...");
+    	$("#tableProduct").bootstrapTable($.tableProduct);
+    });
+    
+    $('#activityClick').click(function(){
+    	console.log("activity...");
+    	$("#tableActivity").bootstrapTable($.tabbleActivity);
+    });
+    
+    $('#feedbackClick').click(function(){
+    	console.log("feedback...");
+    	$("#tableFeedback").bootstrapTable($.tabbleActivity);
+    });
+    
     
 };
 
@@ -466,9 +461,4 @@ layui.use(
                     });
         });
 
-function formatter(value, row, index) {
-    if (row.identity == 1)
-        return "超级管理员";
-    if (row.identity == 2)
-        return "普通管理员";
-}
+

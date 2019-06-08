@@ -2,6 +2,10 @@ package com.ctgu.pojo;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class Supplier {
     private Integer id;
 
@@ -11,6 +15,8 @@ public class Supplier {
 
     private String saddr;
 
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date createdate;
 
     private String snumber;
