@@ -11,7 +11,7 @@ $.tabbleActivity = {
     striped: true,
     pageList: "[10, 20]",
     showRefresh: true,
-    toolbar: "#toolbar",
+    toolbar: "#toolbarActivity",
     showToggle: true,                    //是否显示详细视图和列表视图
     iconSize: 'outline',
     paginationPreText: "<<",

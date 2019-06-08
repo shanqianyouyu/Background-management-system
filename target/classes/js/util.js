@@ -48,7 +48,7 @@ function deleteItem(data, url, type) {
                     time: 1000 //1秒关闭（如果不配置，默认是3秒）
                 });
             }
-            layer.open()
+//            layer.open()
         },
         error: function () {
             console.error("删除出bug了...")
@@ -111,5 +111,18 @@ function ajaxdatas(data,params) {
         error: function (rs) {
             console.log(rs)
         }
+    });
+}
+
+
+/**
+ * 获得选中的数据，为一个对象数组
+ */
+function getUtilSelections(dom) {
+	console.log("dom: " + dom.toString());
+    return $.map(dom.bootstrapTable('getSelections'), function (row) {
+        console.log("选中" + row);
+        console.dir(row);
+        return row;
     });
 }

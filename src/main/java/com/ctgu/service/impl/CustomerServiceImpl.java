@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.ctgu.dao.mappers.CustomerMapper;
 import com.ctgu.pojo.Customer;
 import com.ctgu.pojo.CustomerExample;
+import com.ctgu.pojo.CustomerExample.Criteria;
 import com.ctgu.pojo.UIDataGridResult;
 import com.ctgu.service.CustomerService;
 import com.github.pagehelper.PageHelper;
@@ -35,8 +36,12 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public Customer getCustomerByEmail(String Email) {
-		return null;
+	public List<Customer> getCustomerByEmail(String Email) {
+		CustomerExample example = new CustomerExample();
+		Criteria criteria = example.createCriteria();
+		criteria.andCemailEqualTo(Email);
+		List<Customer> ans = customerMapper.selectByExample(example);
+		return ans;
 	}
 
 	@Override
@@ -57,12 +62,39 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Override
 	public Boolean addCustomer(Customer customer) {
-		return null;
+		Boolean status = null;
+		try {
+			customerMapper.insert(customer);
+		} catch (Exception e) {
+			return false;
+		}
+		return true;
 	}
 
 	@Override
 	public Boolean updateCustomer(Customer customer) {
-		return null;
+		CustomerExample example = new CustomerExample();
+		Criteria criteria = example.createCriteria();
+		criteria.andCemailEqualTo(customer.getCemail());
+		try {
+			customerMapper.updateByExampleSelective(customer, example);
+		} catch (Exception e) {
+			return false;
+		}
+		return true;
+	}
+
+	@Override
+	public Boolean deleteCustomer(String eamil) {
+		CustomerExample example = new CustomerExample();
+		Criteria criteria = example.createCriteria();
+		criteria.andCemailEqualTo(eamil);
+		try {
+			customerMapper.deleteByExample(example);
+		} catch (Exception e) {
+			return false;
+		}
+		return true;
 	}
 
 }

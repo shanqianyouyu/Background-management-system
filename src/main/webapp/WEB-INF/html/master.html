@@ -73,7 +73,7 @@
 																				class="glyphicon glyphicon-edit"></span>客户查询</a>
 														</li>
 														<li>
-																<a href="#context1" class="jelly" data-toggle="tab"><span
+																<a href="#context2" class="jelly" data-toggle="tab"><span
 																				class="glyphicon glyphicon-edit"></span>添加客户</a>
 														</li>
 												</ul>
@@ -174,15 +174,18 @@
 		
 		<!--主体内容-->
 		<div class="context col-xs-10 tab-content" id="mtTabContent">
+		
 				<div class="tab-pane fade in active" id="context1">
+						<ul class="part2 list-group list-group-flush">
 								<div id="toolbar" class="btn-group">
-										<button class="btn btn-success" id="add">新增</button>
-										<button class="btn btn-warning" id="edit">编辑</button>
-										<button class="btn btn-info" id="look">查看</button>
-										<button class="btn btn-danger" id="delete">删除</button>
-										<button class="btn btn-primary" id="refresh">刷新</button>
+										<button class="btn btn-success" id="add"><i class="fa fa-plus" aria-hidden="true"></i></button>
+										<button class="btn btn-warning" id="edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+										<button class="btn btn-info" id="look"><i class="fa fa-search-plus" aria-hidden="true"></i></button>
+										<button class="btn btn-danger" id="delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
+										<button class="btn btn-primary" id="refresh"><i class="fa fa-refresh" aria-hidden="true"></i></button>
 								</div>
-						<table id="adminTable"></table>
+								<table id="adminTable"></table>
+						</ul>
 				</div>
 				
 				<!--context2-->
@@ -194,7 +197,9 @@
 										<button class="btn btn-warning" id="editCustomer">编辑</button>
 										<button class="btn btn-info" id="lookCustomer">查看</button>
 										<button class="btn btn-danger" id="deleteCustomer">删除</button>
+										<!-- 
 										<button class="btn btn-primary" id="refreshCustomer">刷新</button>
+										 -->
 								</div>
 								<table id="tableCustomer"></table>
 						</ul>
@@ -202,7 +207,6 @@
 				
 				<!-- context3 -->
 				<div class="tab-pane fade" id="context3">
-				<h3>supplier</h3>
 						<ul class="part2 list-group list-group-flush">
 								<div id="toolbarSupplier" class="btn-group">
 										<button class="btn btn-success" id="addSupplier">新增</button>
@@ -218,7 +222,6 @@
 				<!--context4-->
 				
 				<div class="tab-pane fade" id="context4">
-				<h1>context4</h1>
 						<ul class="part2 list-group list-group-flush">
 								<div id="toolbarProduct" class="btn-group">
 										<button class="btn btn-success" id="addProduct">新增</button>
@@ -235,7 +238,6 @@
 				<!--context5-->
 				
 				<div class="tab-pane fade" id="context5">
-				<h3>acticity</h3>
 						<ul class="part2 list-group list-group-flush">
 								<div id="toolbarActivity" class="btn-group">
 										<button class="btn btn-success" id="addActivity">新增</button>
@@ -251,7 +253,6 @@
 				<!--context6-->
 				
 				<div class="tab-pane fade" id="context6">
-				<h3>feedback</h3>
 						<ul class="part2 list-group list-group-flush">
 								<div id="toolbarFeedback" class="btn-group">
 										<button class="btn btn-success" id="addFeedback">新增</button>
@@ -275,6 +276,7 @@
 
 <script type="text/javascript" src="/crmSys/js/json.js"></script>
 <script type="text/javascript" src="/crmSys/js/regular.js"></script>
+<script type="text/javascript" src="/crmSys/js/admin.js"></script>
 <script type="text/javascript" src="/crmSys/js/master-min.js"></script>
 <script type="text/javascript" src="/crmSys/js/util.js"></script>
 <script type="text/javascript" src="/crmSys/js/customer.js"></script>
@@ -297,7 +299,13 @@
 </script>
 </body>
 </html>
-<!--admin的结点-->
+<!--admin的结点
+adminLoginname
+adminPassword
+adminName
+adminIdentity
+adminPhoneNumber
+-->
 <div id="layer-admin" style="display: none;">
 		<div class="input-group">
 					<span class="input-group-addon">
@@ -338,7 +346,14 @@
 		</div>
 </div>
 
-<!-- customer的结点 -->
+<!-- customer的结点
+customerName
+customerPhoneNumber
+customerAddr
+customerCreateDate
+customerEmail
+customerRank
+ -->
 <div id="layer-customer" style="display: none;">
 		<div class="input-group">
 					<span class="input-group-addon">
@@ -361,6 +376,7 @@
 										</span>
 				<input id="customerAddr" type="text" class="form-control" placeholder="籍贯" aria-describedby="basic-addon1">
 		</div>
+		<!--  
 		<div class="input-group">
 										<span class="input-group-addon">
 												<i class="fa fa-address-book"></i>
@@ -368,6 +384,7 @@
 				<input id="customerCreateDate" type="text" class="form-control" placeholder="创建日期"
 				       aria-describedby="basic-addon1">
 		</div>
+		-->
 		<div class="input-group">
 										<span class="input-group-addon">
 												<i class="fa fa-address-book"></i>

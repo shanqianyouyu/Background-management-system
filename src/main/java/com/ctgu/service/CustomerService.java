@@ -27,7 +27,7 @@ public interface CustomerService {
 	 * @param Email
 	 * @return
 	 */
-	Customer getCustomerByEmail(String Email);
+	List<Customer> getCustomerByEmail(String Email);
 	
 	/**
 	 * 分页
@@ -50,5 +50,12 @@ public interface CustomerService {
 	 * @return
 	 */
 	Boolean updateCustomer(Customer customer);
+	
+	/**
+	 * 根据email删除客户
+	 * @param eamil
+	 * @return
+	 */
+	Boolean deleteCustomer(String eamil);
 }
 

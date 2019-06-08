@@ -10,7 +10,7 @@ function addAdmin(dom1, dom2, dom3, dom4, dom5) {
         phonenumber: $(dom5).val()
     };
     var jsonStr = JSON.stringify(str);
-
+//    alert(jsonStr);
     console.log(jsonStr);
     $.ajax({
         type: "POST",

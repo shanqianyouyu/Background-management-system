@@ -25,13 +25,14 @@ var admincolumns = [{
 }, {
 	field: 'createdate',
 	title: '创建日期',
+	valign:'middle'
 },{
     field: 'phonenumber',
     title: '邮箱'
 }, {
     field: 'identity',
     title: '身份',
-    visible: false,
+//    visible: false,
 }, {
     field: 'identity',
     title: '身份',
@@ -93,16 +94,16 @@ var productcolumns = [{
 }, {
 	field: 'sid',
 	title: '供应商姓名',
-	visible: false
+//	visible: false
 }, {
 	field: 'pprice',
-	title: '进价'
+	title: '售价'
 }, {
 	field: 'createdate',
 	title: '出售日期'
 }, {
 	field: 'pnumber',
-	title: '零售价'
+	title: '销量'
 }];
 //活动表格
 var activitycolumns = [{
@@ -116,7 +117,7 @@ var activitycolumns = [{
 }, {
 	field: 'createdate',
 	title: '活动日期',
-	visible: false
+	
 }, {
 	field: 'uid',
 	title: 'Uid'
@@ -136,10 +137,11 @@ var feedbackcolumns = [{
 }, {
 	field: 'cid',
 	title: 'cid',
-	visible: false
+//	visible: false
 }, {
 	field: 'uid',
-	title: 'uid'
+	title: 'uid',
+//	visible: false
 }, {
 	field: 'createtime',
 	title: '服务日期'

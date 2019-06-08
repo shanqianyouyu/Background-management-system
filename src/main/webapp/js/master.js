@@ -80,26 +80,14 @@ window.onload = function () {
                             '身份:  '+row.identity].join(', ')
                     }
                 },
-//                onClickCell: function(field, value, row, $element) { 
-//                	$element.attr('contenteditable', true); 
-//                	$element.blur(function() { 
-//                		let index = $element.parent().data('index'); 
-//                		let tdValue = $element.html(); 
-////                		saveData(index, field, tdValue); 
-//                		}) 
-//                		}
             });
 
-    // //bootstrap-table
-    // $('#adminQuery').on('click', function () {
-    // })
     
     
     
     setTimeout(function(){
 		console.log("执行了延时函数...");
 		$('#customerClick').click(function(){
-			console.log("点击事件触发...");
 			$('#tableCustomer').bootstrapTable("destroy");
 			 $('#tableCustomer').bootstrapTable({
 			        columns: customercolumns,
@@ -169,7 +157,7 @@ window.onload = function () {
     
     $('#feedbackClick').click(function(){
     	console.log("feedback...");
-    	$("#tableFeedback").bootstrapTable($.tabbleActivity);
+    	$("#tableFeedback").bootstrapTable($.tabbleFeedback);
     });
     
     
@@ -287,7 +275,7 @@ $look.on('click', function () {
                 $("#layer-admin input").val("");
             }
         });
-    })
+    });
 });
 
 // 编辑
@@ -307,7 +295,7 @@ $edit.on('click', function () {
                 $('#layer-admin > .input-group').css("padding", "10px");
 
                 if (row == undefined) {
-                    layer.msg("未知错误", {
+                    layer.msg("未知错误Admin", {
                         icon: 2,
                         time: 1000 // 1秒关闭（如果不配置，默认是3秒）
                     });
@@ -353,11 +341,9 @@ $delete.on('click', function () {
         layer.confirm('您是否要删除当前 ' + ids.length + '条数据？', {
             btn: ['是', '否']
         }, function () {
-            console.log("打印删除数组" + ids[0].loginname);
             deleteItem(JSON.stringify({
                 loginname: ids[0].loginname
             }), "/crmSys/admin/delete", "POST");
-            console.log("before...");
             delServer(ids);
             
             $table.bootstrapTable('refresh');
