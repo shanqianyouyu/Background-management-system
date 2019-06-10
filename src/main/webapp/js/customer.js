@@ -63,8 +63,6 @@ layui.use("layer", function () {
                     function () {
                         layer.close(index);
                     });
-
-
                 // 判断用户名格式
                 blurVerification("#customerName");
                 //判断手机号
@@ -168,7 +166,7 @@ $editCustomer.on('click', function () {
                 $('#layer-customer > .input-group').css("padding", "10px");
 
                 if (row == undefined) {
-                    layer.msg("未知错误 Customer", {
+                    layer.msg("Customer未知错误", {
                         icon: 2,
                         time: 1000 // 1秒关闭（如果不配置，默认是3秒）
                     });

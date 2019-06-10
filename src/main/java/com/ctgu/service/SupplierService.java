@@ -1,5 +1,6 @@
 package com.ctgu.service;
 
+import com.ctgu.pojo.Supplier;
 import com.ctgu.pojo.UIDataGridResult;
 
 /**
@@ -13,5 +14,42 @@ import com.ctgu.pojo.UIDataGridResult;
  */
 
 public interface SupplierService {
+	/**
+	 * 分页
+	 * 
+	 * @param pages
+	 * @param rows
+	 * @return
+	 */
 	UIDataGridResult getSupplierList(int pages, int rows);
+
+	/**
+	 * 判断手机号是否被占用
+	 * 
+	 * @param number
+	 * @return
+	 */
+	Boolean checkPhoneNumber(String number);
+
+	/**
+	 * 添加
+	 * 
+	 * @param supplier
+	 * @return
+	 */
+	Boolean addSupplier(Supplier supplier);
+
+	/**
+	 * 删除
+	 * @param supplier
+	 * @return
+	 */
+	Boolean deleteSupplier(Supplier supplier);
+
+	/**
+	 * 更新信息
+	 * @param supplier
+	 * @return
+	 */
+	Boolean updateSupplier(Supplier supplier);
 }

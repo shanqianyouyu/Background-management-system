@@ -3,7 +3,7 @@
 <head>
 		<meta charset="utf-8">
 		<title>Chase的后台管理系统</title>
-		
+		<link rel="shortcut icon" href="/crmSys/img/favicon.ico"></head>
 		<link rel="stylesheet" type="text/css" href="/crmSys/bootstrap/css/bootstrap.min.css">
 		<link rel="stylesheet" href="/crmSys/bootstrap/css/bootstrap-table.min.css">
 		<link rel="stylesheet" type="text/css" href="/crmSys/css/master.css">
@@ -35,7 +35,7 @@
 						<div class="panel panel-default">
 								<div class="panel-heading">
 										<h4 class="panel-title">
-												<a class="jelly" data-toggle="collapse" data-parent="#accordion"
+												<a data-toggle="collapse" data-parent="#accordion"
 												   href="#collapseOne"><span class="glyphicon glyphicon-play "></span>用户管理
 												</a>
 										</h4>
@@ -45,11 +45,11 @@
 										<div class="panel-body">
 												<ul id="myTabOne" class="nav nav-tabs">
 														<li class="active">
-																<a id="adminQuery" href="#context1" class="jelly" data-toggle="tab"><span
+																<a id="adminQuery" href="#context1" data-toggle="tab"><span
 																				class="glyphicon glyphicon-edit"></span>用户查询</a>
 														</li>
 														<li>
-																<a href="#context1" class="jelly" data-toggle="tab"><span
+																<a href="#context1" data-toggle="tab"><span
 																				class="glyphicon glyphicon-edit"></span>添加用户</a>
 														</li>
 												</ul>
@@ -61,7 +61,7 @@
 						<div id="customerClick" class="panel panel-default">
 								<div class="panel-heading">
 										<h4 class="panel-title">
-												<a class="jelly" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><span
+												<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><span
 																class="glyphicon glyphicon-play"></span>客户管理</a>
 										</h4>
 								</div>
@@ -178,11 +178,15 @@
 				<div class="tab-pane fade in active" id="context1">
 						<ul class="part2 list-group list-group-flush">
 								<div id="toolbar" class="btn-group">
-										<button class="btn btn-success" id="add"><i class="fa fa-plus" aria-hidden="true"></i></button>
-										<button class="btn btn-warning" id="edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-										<button class="btn btn-info" id="look"><i class="fa fa-search-plus" aria-hidden="true"></i></button>
-										<button class="btn btn-danger" id="delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
+										<button class="btn btn-success fa fa-plus" id="add"></button>
+										<button class="btn btn-warning fa fa-pencil-square-o" id="edit"></button>
+										<button class="btn btn-danger fa fa-trash" id="delete"></button>
+										<!-- 
+										<button class="btn btn-info fa fa-search-plus" id="look"></button>
+										 -->
+										<!-- 
 										<button class="btn btn-primary" id="refresh"><i class="fa fa-refresh" aria-hidden="true"></i></button>
+										 -->
 								</div>
 								<table id="adminTable"></table>
 						</ul>
@@ -193,10 +197,12 @@
 				<div class="tab-pane fade" id="context2">
 						<ul class="part2 list-group list-group-flush">
 								<div id="toolbarCustomer" class="btn-group">
-										<button class="btn btn-success" id="addCustomer">新增</button>
-										<button class="btn btn-warning" id="editCustomer">编辑</button>
+										<button class="btn btn-success  fa fa-plus" id="addCustomer"></button>
+										<button class="btn btn-warning fa fa-pencil-square-o" id="editCustomer"></button>
+										<button class="btn btn-danger fa fa-trash" id="deleteCustomer"></button>
+										<!-- 
 										<button class="btn btn-info" id="lookCustomer">查看</button>
-										<button class="btn btn-danger" id="deleteCustomer">删除</button>
+										 -->
 										<!-- 
 										<button class="btn btn-primary" id="refreshCustomer">刷新</button>
 										 -->
@@ -209,11 +215,15 @@
 				<div class="tab-pane fade" id="context3">
 						<ul class="part2 list-group list-group-flush">
 								<div id="toolbarSupplier" class="btn-group">
-										<button class="btn btn-success" id="addSupplier">新增</button>
-										<button class="btn btn-warning" id="editSupplier">编辑</button>
-										<button class="btn btn-info" id="lookSupplier">查看</button>
-										<button class="btn btn-danger" id="deleteSupplier">删除</button>
+										<button class="btn btn-success  fa fa-plus" id="addSupplier"></button>
+										<button class="btn btn-warning fa fa-pencil-square-o" id="editSupplier"></button>
+										<button class="btn btn-danger fa fa-trash" id="deleteSupplier"></button>
+										<!-- 
 										<button class="btn btn-primary" id="refreshSupplier">刷新</button>
+										 -->
+										<!-- 
+										<button class="btn btn-info" id="lookSupplier">查看</button>
+										 -->
 								</div>
 								<table id="tableSupplier"></table>
 						</ul>
@@ -224,11 +234,15 @@
 				<div class="tab-pane fade" id="context4">
 						<ul class="part2 list-group list-group-flush">
 								<div id="toolbarProduct" class="btn-group">
-										<button class="btn btn-success" id="addProduct">新增</button>
-										<button class="btn btn-warning" id="editProduct">编辑</button>
-										<button class="btn btn-info" id="lookProduct">查看</button>
-										<button class="btn btn-danger" id="deleteProduct">删除</button>
+										<button class="btn btn-success  fa fa-plus" id="addProduct"></button>
+										<button class="btn btn-warning fa fa-pencil-square-o" id="editProduct"></button>
+										<button class="btn btn-danger fa fa-trash" id="deleteProduct"></button>
+										<!-- 
 										<button class="btn btn-primary" id="refreshProduct">刷新</button>
+										 -->
+										<!-- 
+										<button class="btn btn-info" id="lookProduct">查看</button>
+										 -->
 								</div>
 								<table id="tableProduct"></table>
 						</ul>
@@ -240,11 +254,15 @@
 				<div class="tab-pane fade" id="context5">
 						<ul class="part2 list-group list-group-flush">
 								<div id="toolbarActivity" class="btn-group">
-										<button class="btn btn-success" id="addActivity">新增</button>
-										<button class="btn btn-warning" id="editActivity">编辑</button>
+										<button class="btn btn-success  fa fa-plus" id="addActivity"></button>
+										<button class="btn btn-warning fa fa-pencil-square-o" id="editActivity"></button>
+										<button class="btn btn-danger fa fa-trash" id="deleteActivity"></button>
+										<!-- 
 										<button class="btn btn-info" id="lookActivity">查看</button>
-										<button class="btn btn-danger" id="deleteActivity">删除</button>
+										 -->
+										<!-- 
 										<button class="btn btn-primary" id="refreshActivity">刷新</button>
+										 -->
 								</div>
 								<table id="tableActivity"></table>
 						</ul>
@@ -255,11 +273,15 @@
 				<div class="tab-pane fade" id="context6">
 						<ul class="part2 list-group list-group-flush">
 								<div id="toolbarFeedback" class="btn-group">
-										<button class="btn btn-success" id="addFeedback">新增</button>
-										<button class="btn btn-warning" id="editFeedback">编辑</button>
+										<button class="btn btn-success  fa fa-plus" id="addFeedback"></button>
+										<button class="btn btn-warning fa fa-pencil-square-o" id="editFeedback"></button>
+										<button class="btn btn-danger fa fa-trash" id="deleteFeedback"></button>
+										<!-- 
 										<button class="btn btn-info" id="lookFeedback">查看</button>
-										<button class="btn btn-danger" id="deleteFeedback">删除</button>
+										 -->
+										<!-- 
 										<button class="btn btn-primary" id="refreshFeedback">刷新</button>
+										 -->
 								</div>
 								<table id="tableFeedback"></table>
 						</ul>
@@ -402,5 +424,180 @@ customerRank
 		<div class="input-group" style="margin: 0 auto;">
 				<button id="customerCommit" class="btn btn-success" style="margin: 2em;">提交</button>
 				<button id="customerCancel" class="btn btn-danger">取消</button>
+		</div>
+</div>
+
+<!-- supplier的结点
+
+supplierNum 供应商编号 不可修改
+supplierName 名字
+supplierAddr 所在城市
+supplierNumber 联系电话
+supplierCreate 不可修改
+ -->
+<div id="layer-supplier" style="display: none;">
+		<div class="input-group">
+					<span class="input-group-addon">
+												<i class="fa fa-user-circle"></i>
+					</span>
+				<input id="supplierName" type="text" class="form-control" placeholder="名字"
+				       aria-describedby="basic-addon1">
+		</div>
+		<div class="input-group">
+										<span class="input-group-addon">
+												<i class="fa fa-key"></i>
+										</span>
+				<input id="supplierAddr" type="text" class="form-control" placeholder="所在城市"
+				       aria-describedby="basic-addon1">
+		</div>
+		<div class="input-group">
+										<span class="input-group-addon">
+											<i class="fa fa-user"></i>
+										</span>
+				<input id="supplierPhoneNumber" type="text" class="form-control" placeholder="联系电话" aria-describedby="basic-addon1">
+		</div>
+		<div class="input-group" style="margin: 0 auto;">
+				<button id="supplierCommit" class="btn btn-success" style="margin: 2em;">提交</button>
+				<button id="supplierCancel" class="btn btn-danger">取消</button>
+		</div>
+</div>
+
+<!-- product结点
+productPname
+productId
+productPrice
+productNumber
+ -->
+<div id="layer-product" style="display: none;">
+		<div class="input-group">
+					<span class="input-group-addon">
+												<i class="fa fa-user-circle"></i>
+					</span>
+				<input id="productPname" type="text" class="form-control" placeholder="产品名字"
+				       aria-describedby="basic-addon1">
+		</div>
+		<div class="input-group">
+										<span class="input-group-addon">
+												<i class="fa fa-key"></i>
+										</span>
+				<input id="productId" type="text" class="form-control" placeholder="供应商名字"
+				       aria-describedby="basic-addon1">
+		</div>
+		<div class="input-group">
+										<span class="input-group-addon">
+											<i class="fa fa-user"></i>
+										</span>
+				<input id="productPrice" type="text" class="form-control" placeholder="售价" 
+				aria-describedby="basic-addon1">
+		</div>
+		<div class="input-group">
+										<span class="input-group-addon">
+											<i class="fa fa-user"></i>
+										</span>
+				<input id="productNumber" type="text" class="form-control" placeholder="销量" 
+				aria-describedby="basic-addon1">
+		</div>
+		<div class="input-group" style="margin: 0 auto;">
+				<button id="productCommit" class="btn btn-success" style="margin: 2em;">提交</button>
+				<button id="productCancel" class="btn btn-danger">取消</button>
+		</div>
+</div>
+
+<!-- 活动的结点
+activityAitem 不可修改
+activityAdetail
+activityUid
+activityCus
+ -->
+<div id="layer-actvity" style="display: none;">
+		<div class="input-group">
+					<span class="input-group-addon">
+												<i class="fa fa-user-circle"></i>
+					</span>
+				<input id="activityAitem" type="text" class="form-control" placeholder="活动"
+				       aria-describedby="basic-addon1">
+		</div>
+		<div class="input-group">
+										<span class="input-group-addon">
+												<i class="fa fa-key"></i>
+										</span>
+				<input id="activityAdetail" type="text" class="form-control" placeholder="活动细则"
+				       aria-describedby="basic-addon1">
+		</div>
+		<div class="input-group">
+										<span class="input-group-addon">
+											<i class="fa fa-user"></i>
+										</span>
+				<input id="activityUid" type="text" class="form-control" placeholder="Uid" 
+				aria-describedby="basic-addon1">
+		</div>
+		<div class="input-group">
+										<span class="input-group-addon">
+											<i class="fa fa-user"></i>
+										</span>
+				<input id="activityCus" type="text" class="form-control" placeholder="参加人员" 
+				aria-describedby="basic-addon1">
+		</div>
+		<div class="input-group" style="margin: 0 auto;">
+				<button id="activityCommit" class="btn btn-success" style="margin: 2em;">提交</button>
+				<button id="activityCancel" class="btn btn-danger">取消</button>
+		</div>
+</div>
+<!-- feedback
+feedbackPid		编号
+feedbackFitem	产品问题
+feedbackCid		cid
+feedbackUid		uid
+feedbackPeriod	服务信息
+ -->
+<div id="layer-feedback" style="display: none;">
+<!-- 
+
+		<div class="input-group">
+					<span class="input-group-addon">
+												<i class="fa fa-user-circle"></i>
+					</span>
+				<input id="feedbackPid" type="text" class="form-control" placeholder="编号"
+				       aria-describedby="basic-addon1">
+		</div>
+-->
+		<div class="input-group">
+										<span class="input-group-addon">
+												<i class="fa fa-key"></i>
+										</span>
+				<input id="feedbackFitem" type="text" class="form-control" placeholder="产品问题"
+				       aria-describedby="basic-addon1">
+		</div>
+		<div class="input-group">
+										<span class="input-group-addon">
+											<i class="fa fa-user"></i>
+										</span>
+				<input id="feedbackCid" type="text" class="form-control" placeholder="cid" 
+				aria-describedby="basic-addon1">
+		</div>
+		<div class="input-group">
+										<span class="input-group-addon">
+											<i class="fa fa-user"></i>
+										</span>
+				<input id="feedbackUid" type="text" class="form-control" placeholder="uid" 
+				aria-describedby="basic-addon1">
+		</div>
+		<div class="input-group" >
+										<span class="input-group-addon">
+											<i class="fa fa-user"></i>
+										</span>
+				<input id="feedbackCreatetime"  type="text" class="form-control" placeholder="createtime" 
+				aria-describedby="basic-addon1">
+		</div>
+		<div class="input-group">
+										<span class="input-group-addon">
+											<i class="fa fa-user"></i>
+										</span>
+				<input id="feedbackPeriod" type="text" class="form-control" placeholder="服务信息" 
+				aria-describedby="basic-addon1">
+		</div>
+		<div class="input-group" style="margin: 0 auto;">
+				<button id="feedbackCommit" class="btn btn-success" style="margin: 2em;">提交</button>
+				<button id="feedbackCancel" class="btn btn-danger">取消</button>
 		</div>
 </div>

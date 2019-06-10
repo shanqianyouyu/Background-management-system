@@ -44,7 +44,7 @@ window.onload = function () {
                 pageNumber: 1, // 当前地基页
                 pageSize: 10, // 每页显示数据条数
                 mode: "popup",
-//                smartDisplay:true,
+                smartDisplay:true,
                 showExport: true,                     //是否显示导出
                 exportDataType: "basic",
                 striped: true,                      //是否显示行间隔色
@@ -53,8 +53,8 @@ window.onload = function () {
                 toolbar: "#toolbar",
                 showToggle:true,                    //是否显示详细视图和列表视图
                 iconSize: 'outline',
-                paginationPreText: "<<",
-                paginationNextText: ">>",
+                paginationPreText: "<",
+                paginationNextText: ">",
                 paginationFirstText: "First",
                 paginationLastText: "Last",
                 showColumns: true,

@@ -1,5 +1,6 @@
 package com.ctgu.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.ctgu.dao.mappers.ActivityMapper;
 import com.ctgu.pojo.Activity;
 import com.ctgu.pojo.ActivityExample;
+import com.ctgu.pojo.ActivityExample.Criteria;
 import com.ctgu.pojo.Supplier;
 import com.ctgu.pojo.SupplierExample;
 import com.ctgu.pojo.UIDataGridResult;
@@ -46,6 +48,61 @@ public class ActivityServiceImpl implements ActivityService {
 		result.setTotal(pageInfo.getTotal());
 		result.setArray(list);
 		return result;
+	}
+
+	@Override
+	public Boolean checkAitem(String aitem) {
+		System.out.println("aitem: " + aitem);
+		ActivityExample example = new ActivityExample();
+		Criteria criteria = example.createCriteria();
+		criteria.andAitemEqualTo(aitem);
+		try {
+			List<Activity> activities = activityMapper.selectByExample(example);
+			if (activities == null || activities.size() == 0) {
+				return false;
+			}
+		} catch (Exception e) {
+			return false;
+		}
+		return true;
+	}
+
+	@Override
+	public Boolean addActivity(Activity activity) {
+		activity.setCreatedate(new Date());
+		try {
+			activityMapper.insert(activity);
+		} catch (Exception e) {
+			return false;
+		}
+		return true;
+	}
+
+	@Override
+	public Boolean deleteActivity(Activity activity) {
+		ActivityExample example = new ActivityExample();
+		Criteria criteria = example.createCriteria();
+		criteria.andAitemEqualTo(activity.getAitem());
+		try {
+			activityMapper.deleteByExample(example);
+		} catch (Exception e) {
+			return false;
+		}
+		return true;
+	}
+
+	@Override
+	public Boolean updateActivity(Activity activity) {
+		ActivityExample example = new ActivityExample();
+		Criteria criteria = example.createCriteria();
+		criteria.andAitemEqualTo(activity.getAitem());
+		System.out.println("aitem: " + activity.getAitem());
+		try {
+			activityMapper.updateByExampleSelective(activity, example);
+		} catch (Exception e) {
+			return false;
+		}
+		return true;
 	}
 
 }

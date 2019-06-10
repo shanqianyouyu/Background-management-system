@@ -36,10 +36,10 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public List<Customer> getCustomerByEmail(String Email) {
+	public List<Customer> getCustomerByEmail(String email) {
 		CustomerExample example = new CustomerExample();
 		Criteria criteria = example.createCriteria();
-		criteria.andCemailEqualTo(Email);
+		criteria.andCemailEqualTo(email);
 		List<Customer> ans = customerMapper.selectByExample(example);
 		return ans;
 	}
@@ -76,6 +76,7 @@ public class CustomerServiceImpl implements CustomerService {
 		CustomerExample example = new CustomerExample();
 		Criteria criteria = example.createCriteria();
 		criteria.andCemailEqualTo(customer.getCemail());
+		customer.setCemail(null);
 		try {
 			customerMapper.updateByExampleSelective(customer, example);
 		} catch (Exception e) {

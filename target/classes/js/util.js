@@ -77,11 +77,12 @@ function updateItem(data, url, type) {
                     time: 1000 //1秒关闭（如果不配置，默认是3秒）
                 });
             }else {
-                layer.msg('修改成功!', {
-                    icon: 1,
-                    time: 800 //2秒关闭（如果不配置，默认是3秒）
-                }, function(){
-                });
+//            	layer.msg('只想弱弱提示');
+//                layer.msg('修改成功!', {
+//                    icon: 1,
+//                    time: 800 //2秒关闭（如果不配置，默认是3秒）
+//                }, function(){
+//                });
             }
         },
         error: function () {

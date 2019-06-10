@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.ctgu.dao.mappers.ProductMapper;
 import com.ctgu.pojo.Product;
 import com.ctgu.pojo.ProductExample;
+import com.ctgu.pojo.ProductExample.Criteria;
 import com.ctgu.pojo.UIDataGridResult;
 import com.ctgu.service.ProductService;
 import com.github.pagehelper.PageHelper;
@@ -42,6 +43,60 @@ public class ProductServiceImpl implements ProductService {
 		result.setTotal(pageInfo.getTotal());
 		result.setArray(list);
 		return result;
+	}
+
+	@Override
+	public Boolean checkName(String pname) {
+		ProductExample example = new ProductExample();
+		Criteria criteria = example.createCriteria();
+		criteria.andPnameEqualTo(pname);
+		List<Product> products = null;
+		try {
+			products = productMapper.selectByExample(example);
+		} catch (Exception e) {
+			return false;
+		}
+		if (products == null || products.size() == 0) {
+			return false;
+		}
+		return true;
+	}
+
+	@Override
+	public Boolean addProduct(Product product) {
+		product.setPnumber(0);
+		try {
+			productMapper.insertSelective(product);
+		} catch (Exception e) {
+			return false;
+		}
+		return true;
+	}
+
+	@Override
+	public Boolean deleteProduct(Product product) {
+		ProductExample example = new ProductExample();
+		Criteria criteria = example.createCriteria();
+		criteria.andPnameEqualTo(product.getPname());
+		try {
+			productMapper.deleteByExample(example);
+		} catch (Exception e) {
+			return false;
+		}
+		return true;
+	}
+
+	@Override
+	public Boolean updateProduct(Product product) {
+		ProductExample example = new ProductExample();
+		Criteria criteria = example.createCriteria();
+		criteria.andPnameEqualTo(product.getPname());
+		try {
+			productMapper.updateByExampleSelective(product, example);
+		} catch (Exception e) {
+			return false;
+		}
+		return true;
 	}
 
 }

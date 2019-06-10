@@ -1,5 +1,6 @@
 package com.ctgu.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.ctgu.dao.mappers.FeedbackMapper;
 import com.ctgu.pojo.Feedback;
 import com.ctgu.pojo.FeedbackExample;
+import com.ctgu.pojo.FeedbackExample.Criteria;
 import com.ctgu.pojo.Supplier;
 import com.ctgu.pojo.SupplierExample;
 import com.ctgu.pojo.UIDataGridResult;
@@ -45,6 +47,43 @@ public class FeedBackServiceImpl implements FeedBackService {
 		result.setTotal(pageInfo.getTotal());
 		result.setArray(list);
 		return result;
+	}
+
+	@Override
+	public Boolean addFeedback(Feedback feedback) {
+		feedback.setCreatetime(new Date());
+		try {
+			feedbackMapper.insertSelective(feedback);
+		} catch (Exception e) {
+			return false;
+		}
+		return true;
+	}
+
+	@Override
+	public Boolean deleteFeedback(Feedback feedback) {
+		FeedbackExample example = new FeedbackExample();
+		Criteria criteria = example.createCriteria();
+		criteria.andCreatetimeEqualTo(feedback.getCreatetime());
+		try {
+			feedbackMapper.deleteByExample(example);
+		} catch (Exception e) {
+			return false;
+		}
+		return true;
+	}
+
+	@Override
+	public Boolean updateFeedback(Feedback feedback) {
+		FeedbackExample example = new FeedbackExample();
+		Criteria criteria = example.createCriteria();
+		criteria.andCreatetimeEqualTo(feedback.getCreatetime());
+		try {
+			feedbackMapper.updateByExampleSelective(feedback, example);
+		} catch (Exception e) {
+			return false;
+		}
+		return true;
 	}
 
 }

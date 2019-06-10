@@ -3,7 +3,7 @@ function passwordRegular(password) {
     if (password.trim() == "") {
         return "密码不能为空!";
     }
-    if (!password.trim().match(/^[a-z0-9_-]{6,18}$/)) {
+    if (!password.trim().match(/^[a-zA-Z0-9_-]{6,18}$/)) {
         return "密码格式错误";
     }
     return true;
@@ -14,7 +14,7 @@ function usernamedRegular(username) {
     if (username.trim() == "") {
         return "用户名不能为空";
     }
-    if (!username.trim().match(/^[a-z0-9_-]{3,16}$/)) {
+    if (!username.trim().match(/^[a-zA-Z0-9_-]{3,16}$/)) {
         return "用户名格式错误";
     }
     return true;

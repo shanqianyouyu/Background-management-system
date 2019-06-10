@@ -179,11 +179,11 @@
 }
 .part2 ul{
 	margin-top: 20px;
-	padding-left: 10%;
+/*	padding-left: 10%;*/
 	margin-bottom: 20px;
 }
 .part2 ul li{
-	font-size: 20px;
+	font-size: 11px;
 }
 
 /*底部*/

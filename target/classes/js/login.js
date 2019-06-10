@@ -15,7 +15,7 @@ window.onload = function () {
             }
 
             //验证邮箱格式
-            if (!text.match(/^[a-z0-9_-]{3,16}$/)) {
+            if (!text.match(/^[a-zA-Z0-9_-]{3,16}$/)) {
                 $('#lab_email').empty();
                 $('#lab_email').text("用户名格式错误!");
                 emailStatus = false;
