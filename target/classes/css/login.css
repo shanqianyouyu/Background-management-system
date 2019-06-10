@@ -18,8 +18,10 @@ h1{
 }
 .login_table {
     /*width: 100px;*/
+    opacity: 0.8;
+    box-shadow: 10px 5px 20px black;
     width: 550px;
-    background-color: #000;
+    background-color: #6b78cc;
     color: white;
     position: absolute;
     top: 50%;
@@ -32,4 +34,8 @@ h1{
 }
 .btn_group {
     padding: 3em 0 2em 0;
+}
+
+#verificationCode {
+	display:none;
 }

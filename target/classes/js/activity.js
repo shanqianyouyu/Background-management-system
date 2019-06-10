@@ -15,8 +15,8 @@ $.tabbleActivity = {
     toolbar: "#toolbarActivity",
     showToggle: true,                    //是否显示详细视图和列表视图
     iconSize: 'outline',
-    paginationPreText: "<<",
-    paginationNextText: ">>",
+    paginationPreText: "<",
+    paginationNextText: ">",
     paginationFirstText: "First",
     paginationLastText: "Last",
     showColumns: true,

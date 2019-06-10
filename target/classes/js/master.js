@@ -107,8 +107,8 @@ window.onload = function () {
 			        showRefresh: true,
 			        showToggle: true,                    //是否显示详细视图和列表视图
 			        iconSize: 'outline',
-			        paginationPreText: "<<",
-			        paginationNextText: ">>",
+			        paginationPreText: "<",
+			        paginationNextText: ">",
 			        paginationFirstText: "First",
 			        paginationLastText: "Last",
 			        showColumns: true,
@@ -219,7 +219,7 @@ $refresh.on('click', function () {
     $table.bootstrapTable('refresh');
     $edit.prop('disabled', true);
     $look.prop('disabled', true);
-    $delete.prop('disabled', bool);
+    $delete.prop('disabled', true);
     // }
 });
 
@@ -309,7 +309,11 @@ $edit.on('click', function () {
 
                 $('#adminLoginname').attr("disabled", true);
 
-                $(document).on('click', '#commit', function () {
+                $(document).on( 'click', '#commit', function () {
+                	if($('#adminLoginname').attr("disabled") !== "disabled") {
+                		return false;
+                	}
+                	alert("u");
                     // 修改事件
                     updateItem(JSON.stringify({
                         loginname: $('#adminLoginname').val(),
@@ -363,10 +367,7 @@ function delServer(ids) {
 }
 
 // 添加
-layui.use(
-        "layer",
-        function () {
-            $add.on('click',function () {
+layui.use( "layer", function () { $add.on('click',function () {
                         console.log("123");
                         var index = layer.open({
                                 type: 1,
@@ -406,6 +407,10 @@ layui.use(
 
                                     // 提交事件
                                     $(document).on( 'click', '#commit', function () {
+//		                                    	if($('#adminLoginname').attr("disabled") == "disabled") {
+//		                                    		return false;
+//		                                    	}
+                                    			alert("添加事件提交...");
                                                 // console.log("...");
                                                 $('#adminLoginname').trigger("blur");
                                                 if (usernamedRegular($('#adminLoginname').val()) !== true) {
@@ -441,6 +446,7 @@ layui.use(
                                 },
                                 // 右上角关闭事件
                                 cancel: function () {
+//                                	 $(document).on( 'click', '#commit', function () {
                                     $("#layer-admin input").val("");
                                 }
                             });

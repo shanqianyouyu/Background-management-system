@@ -5,6 +5,7 @@
 	pageEncoding="UTF-8"%> -->
 		<meta charset="utf-8">
 		<title>欢迎登录</title>
+		<link rel="shortcut icon" href="/crmSys/img/favicon.ico"></head>
 		<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="css/login.css">
 		<script src="bootstrap/js/jquery.min.js"></script>
@@ -13,43 +14,94 @@
 </head>
 <body>
 <div class="login_table">
-		<h1>欢迎登录</h1>
-		<div class="form-horizontal container-fluid">
-				
-				<div class="form-group row">
-						<label for="email" class="col-sm-2 control-label">用户名</label>
-						<div class="col-sm-10">
-								<input type="text" id="loginname" class="form-control" placeholder="username"/>
-						</div>
-						<label class="col-sm-2">&nbsp;</label>
-						<label id="lab_email" class="col-sm-5">&nbsp;</label>
-				</div>
-				
-				<div class="form-group row">
-						<label for="password" class="col-sm-2 control-label">Password</label>
-						<div class="col-sm-10">
-								<input type="password" id="password" class="form-control" placeholder="Password">
-						</div>
-						<label class="col-sm-2">&nbsp;</label>
-						<label id="lab_password" class="col-sm-5">&nbsp;</label>
-				</div>
-				
-				
-				<!--3 2 2 2 3-->
-				<div class="form-group row btn_group">
-						<div class=" col-sm-3"></div>
-						<div class=" col-sm-2">
-						<!--  <button id="sign" class="btn">Sign in</button>-->
-								 <button type="submit" id="sign" class="btn">Sign in</button>
-						</div>
+		
+		<div class="form-horizontal">
+				<div id="login">
+				<h1>欢迎登录</h1>
+					<div class="form-group row">
+							<label for="email" class="col-sm-2 control-label">用户名 :</label>
+							<div class="col-sm-9">
+									<input type="text" id="loginname" class="form-control" placeholder="username"/>
+							</div>
+							<label class="col-sm-2">&nbsp;</label>
+							<label id="lab_email" class="col-sm-5">&nbsp;</label>
+					</div>
+					
+					<div class="form-group row">
+							<label for="password" class="col-sm-2 control-label">密&nbsp;&nbsp;码 :</label>
+							<div class="col-sm-9">
+									<input type="password" id="password" class="form-control" placeholder="Password">
+							</div>
+							<label class="col-sm-2">&nbsp;</label>
+							<label id="lab_password" class="col-sm-5">&nbsp;</label>
+					</div>
+					<div class="row">
 						<div class="col-sm-2"></div>
 						<div class="col-sm-2">
-								<button type="submit" class="btn">Cancel</button>
+							<a href="" id="toCheck" style="color:#000;">忘记密码</a>
 						</div>
-						<div class="col-sm-3"></div>
-				</div>
-		</form>
+					</div>
+					
+					<!--3 2 2 2 3-->
+					<div class="form-group row btn_group">
+							<div class=" col-sm-3"></div>
+							<div class=" col-sm-2">
+							<!--  <button id="sign" class="btn">Sign in</button>-->
+									 <button type="submit" id="sign" class="btn btn-success">提交</button>
+							</div>
+							<div class="col-sm-2"></div>
+							<div class="col-sm-2">
+									<button type="submit" class="btn btn-info">取消</button>
+							</div>
+							<div class="col-sm-3"></div>
+					</div>
+					
+			</div>
+			
+		</div>
 		
 </div>
+<div class="login_table" >
+			<div id="verificationCode">
+				<h1>重置密码</h1>
+					<div class="form-group row">
+						<label for="email" class="col-sm-2 control-label">用户名 :</label>
+						<div class="col-sm-9">
+								<input type="text" id="verificationLogin" class="form-control" placeholder="name"/>
+						</div>
+						<label id="lab_verificationloginname" class="col-sm-9">&nbsp;</label>
+					</div>
+					
+					<div class="form-group row">
+						<label for="email" class="col-sm-2 control-label">邮箱 :</label>
+						<div class="col-sm-9">
+								<input type="text" id="verificationEmail" class="form-control" placeholder="email"/>
+						</div>
+						<label id="lab_verificationEmail" class="col-sm-5">&nbsp;</label>
+					</div>
+					
+					<div class="form-group row">
+						<label for="password" class="col-sm-2 control-label">验证码 :</label>
+						<div class="col-sm-4">
+								<input type="text" id="code" class="form-control" placeholder="验证码">
+						</div>
+						<label class="col-sm-2">
+							<button id="getCode" class="btn" style="padding:0px 5px 0 5px; color:green">获取验证码</button>
+						</label>
+						<label style="height:10px;" id="lab_code" class="col-sm-5">&nbsp;</label>
+					</div>
+				
+				<div class="form-group row btn_group">
+							<div class=" col-sm-3"></div>
+							<div class=" col-sm-2">
+									 <button type="submit" id="submitCode" class="btn btn-success">提交</button>
+							</div>
+							<div class="col-sm-2"></div>
+							<div class="col-sm-2">
+									<button type="submit" id="toLogin" class="btn btn-info">返回登录</button>
+							</div>
+				</div>
+			</div>
+		</div>
 </body>
 </html>

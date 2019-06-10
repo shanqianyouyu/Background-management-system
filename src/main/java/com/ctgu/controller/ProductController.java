@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.ctgu.pojo.Product;
 import com.ctgu.pojo.UIDataGridResult;
 import com.ctgu.service.ProductService;
-import com.ctgu.service.SupplierService;
 
 /**
  * Copyright © 2019 eSunny Info. Tech Ltd. All rights reserved.
