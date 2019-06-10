@@ -37,13 +37,12 @@ public class AdminController {
 
 	@RequestMapping("/login")
 	@ResponseBody
-	public String login(@RequestBody Admin admin, HttpServletRequest request) {
+	public String login(@RequestBody Admin admin,HttpSession session) {
 		String status = null;
 		Admin ans = adminService.gerAdminByLoginNumber(admin.getLoginname());
 		if (ans != null && ans.getPassword().equals(admin.getPassword())) {
 			status = "1";
 			// 登录成功
-			HttpSession session = request.getSession(true);
 			session.setAttribute("user", ans.getName());
 		} else {
 			status = "0";
@@ -175,5 +174,12 @@ public class AdminController {
 		status = true;
 		msg = "密码修改成功，新密码为" + password;
 		return "{\"status\" :\"" + status.toString() + "\",\"msg\":\"" + msg + "\"}";
+	}
+	
+	@RequestMapping("/logout")
+	@ResponseBody
+	public String logOut(HttpSession session) {
+		session.removeAttribute("user");
+		return "{\"status\" :\"" + true + "\"}";
 	}
 }

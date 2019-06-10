@@ -89,6 +89,7 @@ $tableProduct.on('check.bs.table uncheck.bs.table ' + 'check-all.bs.table unchec
 // 添加
 layui.use("layer", function () {
     $addProduct.on('click', function () {
+    	$('#productCommit').css("display","inline-block");
         var index = layer.open({
             type: 1,
             title: '添加产品',
@@ -110,11 +111,7 @@ layui.use("layer", function () {
                     function () {
                         layer.close(index);
                     });
-
-                //判断手机号
-                // blurVerification("#supplierPhoneNumber");
-
-                // // 客户邮箱查重
+                // 客户邮箱查重
                 $(document).on('blur', '#productPname', function () {
                     checkRepeat(
                         JSON.stringify({
@@ -122,39 +119,14 @@ layui.use("layer", function () {
                         }),
                         "/crmSys/product/checkname", 'POST', "产品名字");
                 });
-
-                // 提交事件
-                $(document).on('click', '#productCommit', function () {
-                    if ($('#productPname').val().trim() == "") {
-                        layer.msg('产品名不能为空', {icon: 2});
-                        return;
-                    }
-                    if ($('#productId').val().trim() == "") {
-                        layer.msg('供应商名不能为空', {icon: 2});
-                        return;
-                    }
-                    if ($('#productPrice').val().trim() == "") {
-                        layer.msg('售价不能为空', {icon: 2});
-                        return;
-                    }
-
-                    /*
-                      pname: $(dom1).val(),
-                      sid: $(dom2).val(),
-                      pprice: $(dom3).val(),
-                    */
-                    // 提交点击请求
-                    addProduct('#productPname', '#productId', '#productPrice');
-
-                    // 清空所有input框
-                    $("#layer-product input").val("");
-                    $('#supplierCancel').trigger("click");
-                    $tableProduct.bootstrapTable('refresh');
-                });
             },
             // 关闭弹窗后执行
             end: function () {
+            	// 清空所有input框
+                $("#layer-product input").val("");
+                $tableProduct.bootstrapTable('refresh');
                 console.log("添加联系商窗口关闭...");
+                $('#productCommit').css("display","none");
             },
             // 右上角关闭事件
             cancel: function () {
@@ -189,7 +161,7 @@ $deleteProduct.on('click', function () {
 // 编辑
 $editProduct.on('click', function () {
     var row = getUtilSelections($tableProduct)[0];
-
+    $('#productCommit2').css("display","inline-block");
     layui.use('layer', function () {
         var index = layer.open({
             type: 1,
@@ -199,6 +171,11 @@ $editProduct.on('click', function () {
             area: ['60%', '70%'],
             content: $('#layer-product'),
             success: function () {
+            	 // 窗口关闭事件
+                $(document).on('click', '#productCancel',
+                    function () {
+                        layer.close(index);
+                    });
                 $('#layer-product').css("padding", "10px");
                 $('#layer-product > .input-group').css("padding", "10px");
 
@@ -215,24 +192,15 @@ $editProduct.on('click', function () {
 
 
                  $('#productPname').attr("disabled", true);
-
-                $(document).on('click', '#productCommit', function () {
-                	console.log("产品编辑提交...");
-                    // 修改事件
-                    updateItem(JSON.stringify({
-                        pname: $('#productPname').val(),
-                        sid: $('#productId').val(),
-                        pprice: $('#productPrice').val()
-                    }), "/crmSys/product/update", "POST");
-                    $tableProduct.bootstrapTable('refresh');
-                    layer.close(index);
-                });
+                 
             },
             end: function () { // 最后执行reload
                  $('#productPname').attr("disabled", false);
                 $('#productPname').val("");
                 $('#productId').val("");
                 $('#productPrice').val("");
+                $('#productCommit2').css("display","none");
+                $tableProduct.bootstrapTable('refresh');
             }
         });
     })
@@ -280,3 +248,40 @@ function addProduct(dom1, dom2, dom3) {
         }
     });
 }
+
+// 提交事件
+$(document).on('click', '#productCommit', function () {
+    if ($('#productPname').val().trim() == "") {
+        layer.msg('产品名不能为空', {icon: 2});
+        return;
+    }
+    if ($('#productId').val().trim() == "") {
+        layer.msg('供应商名不能为空', {icon: 2});
+        return;
+    }
+    if ($('#productPrice').val().trim() == "") {
+        layer.msg('售价不能为空', {icon: 2});
+        return;
+    }
+
+    /*
+      pname: $(dom1).val(),
+      sid: $(dom2).val(),
+      pprice: $(dom3).val(),
+    */
+    // 提交点击请求
+    addProduct('#productPname', '#productId', '#productPrice');
+    $('#productCancel').trigger("click");
+});
+
+//编辑提交
+$(document).on('click', '#productCommit2', function () {
+	console.log("产品编辑提交...");
+    // 修改事件
+    updateItem(JSON.stringify({
+        pname: $('#productPname').val(),
+        sid: $('#productId').val(),
+        pprice: $('#productPrice').val()
+    }), "/crmSys/product/update", "POST");
+    $('#productCancel').trigger("click");
+});

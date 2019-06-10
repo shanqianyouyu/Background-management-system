@@ -88,6 +88,7 @@ $tableActivity.on('check.bs.table uncheck.bs.table ' + 'check-all.bs.table unche
 // 添加
 layui.use("layer", function () {
     $addActivity.on('click', function () {
+    	$('#activityCommit').css("display","inline-block");
         var index = layer.open({
             type: 1,
             title: '添加活动',
@@ -99,20 +100,15 @@ layui.use("layer", function () {
             area: ['550px', '480px'],
             content: $('#layer-actvity'),
             success: function () {
+            	//窗口关闭事件
+            	$(document).on('click', '#activityCancel',
+            	    function () {
+            	        layer.close(index);
+            	    });
                 $('#layer-actvity').css("padding", "10px");
                 $('#layer-actvity > .input-group').css("padding", "10px");
                 // 显示结点
                 $('#layer-actvity').css("display", 'block');
-
-                // 窗口关闭事件
-                $(document).on('click', '#activityCancel',
-                    function () {
-                        layer.close(index);
-                    });
-
-                //判断手机号
-                // blurVerification("#supplierPhoneNumber");
-
                 // 活动名字查重
                 $(document).on('blur', '#activityAitem', function () {
                     checkRepeat(
@@ -121,45 +117,20 @@ layui.use("layer", function () {
                         }),
                         "/crmSys/activity/checkaitem", 'POST', "活动名");
                 });
-
-                // 提交事件
-                $(document).on('click', '#activityCommit', function () {
-                    if ($('#activityAitem').val().trim() == "") {
-                        layer.msg('活动名不能为空', {icon: 2});
-                        return;
-                    }
-                    if ($('#activityAdetail').val().trim() == "") {
-                        layer.msg('活动细则不能为空', {icon: 2});
-                        return;
-                    }
-                    if ($('#activityUid').val().trim() == "") {
-                        layer.msg('uid不能为空', {icon: 2});
-                        return;
-                    }
-
-                    /*
-                    aitem   activityAitem
-                    adetail activityAdetail
-                    uid     activityUid
-                    cus     activityCus
-                    */
-                    // 提交点击请求
-                    addActivity('#activityAitem', '#activityAdetail', '#activityUid', '#activityCus');
-
-                    // 清空所有input框
-                    $("#layer-actvity input").val("");
-                    $('#activityCancel').trigger("click");
-                    $tableActivity.bootstrapTable('refresh');
-                });
+               
             },
             // 关闭弹窗后执行
             end: function () {
                 console.log("添加联系商窗口关闭...");
+                $('#activityCommit').css("display","none");
+             // 清空所有input框
+                $("#layer-actvity input").val("");
+                $tableActivity.bootstrapTable('refresh');
             },
             // 右上角关闭事件
             cancel: function () {
                 //清空输入框
-                $("#layer-actvity input").val("");
+//                $("#layer-actvity input").val("");
             }
         });
     });
@@ -189,7 +160,7 @@ $deleteActivity.on('click', function () {
 // 编辑
 $editActivity.on('click', function () {
     var row = getUtilSelections($tableActivity)[0];
-
+    $('#activityCommit2').css("display","inline-block");
     layui.use('layer', function () {
         var index = layer.open({
             type: 1,
@@ -199,6 +170,11 @@ $editActivity.on('click', function () {
             area: ['60%', '70%'],
             content: $('#layer-actvity'),
             success: function () {
+            	//窗口关闭事件
+            	$(document).on('click', '#activityCancel',
+            	    function () {
+            	        layer.close(index);
+            	    });
                 $('#layer-actvity').css("padding", "10px");
                 $('#layer-actvity > .input-group').css("padding", "10px");
 
@@ -213,26 +189,7 @@ $editActivity.on('click', function () {
                 $('#activityAdetail').val(row.adetail);
                 $('#activityUid').val(row.uid);
                 $('#activityCus').val(row.cus);
-
-
                 $('#activityAitem').attr("disabled", true);
-
-                $(document).on('click', '#activityCommit', function () {
-                    console.log("产品编辑提交...");
-                    console.log($('#activityAdetail').val());
-                    console.log($('#activityUid').val());
-                    console.log($('#activityCus').val());
-                    
-                    // 修改事件
-                    updateItem(JSON.stringify({
-                    	aitem: $('#activityAitem').val(),
-                        adetail: $('#activityAdetail').val(),
-                        uid: $('#activityUid').val(),
-                        cus: $('#activityCus').val()
-                    }), "/crmSys/activity/update", "POST");
-                    
-                    layer.close(index);
-                });
             },
             end: function () { // 最后执行reload
             	$tableActivity.bootstrapTable('refresh');
@@ -241,6 +198,8 @@ $editActivity.on('click', function () {
                 $('#activityAdetail').val();
                 $('#activityUid').val();
                 $('#activityCus').val();
+                $('#activityCommit2').css("display","none");
+                $("#layer-actvity input").val("");
             }
         });
     })
@@ -290,4 +249,43 @@ function addActivity(dom1, dom2, dom3, dom4) {
         }
     });
 }
+// 提交事件
+$(document).on('click', '#activityCommit', function () {
+    if ($('#activityAitem').val().trim() == "") {
+        layer.msg('活动名不能为空', {icon: 2});
+        return;
+    }
+    if ($('#activityAdetail').val().trim() == "") {
+        layer.msg('活动细则不能为空', {icon: 2});
+        return;
+    }
+    if ($('#activityUid').val().trim() == "") {
+        layer.msg('uid不能为空', {icon: 2});
+        return;
+    }
+    /*
+    aitem   activityAitem
+    adetail activityAdetail
+    uid     activityUid
+    cus     activityCus
+    */
+    // 提交点击请求
+    addActivity('#activityAitem', '#activityAdetail', '#activityUid', '#activityCus');
+    $('#activityCancel').trigger("click");
+});
+
+$(document).on('click', '#activityCommit2', function () {
+    console.log("产品编辑提交...");
+    console.log($('#activityAdetail').val());
+    console.log($('#activityUid').val());
+    console.log($('#activityCus').val());
+    // 修改事件
+    updateItem(JSON.stringify({
+    	aitem: $('#activityAitem').val(),
+        adetail: $('#activityAdetail').val(),
+        uid: $('#activityUid').val(),
+        cus: $('#activityCus').val()
+    }), "/crmSys/activity/update", "POST");
+    $('#activityCancel').trigger("click");
+});
 

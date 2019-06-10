@@ -2,6 +2,7 @@ package com.ctgu.interceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -21,8 +22,12 @@ public class CheckLoginInterceptor implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		System.out.println("拦截...");
-		System.out.println((String)request.getAttribute("user"));
+		HttpSession session = request.getSession();
+		System.out.println("拦截请求: " + session.getAttribute("user"));
+		if (session.getAttribute("user") == null) {
+			response.sendRedirect("/crmSys/");
+			return false;
+		}
 		return true;
 	}
 

@@ -90,6 +90,7 @@ $tableSupplier.on('check.bs.table uncheck.bs.table ' + 'check-all.bs.table unche
 // 添加
 layui.use("layer", function () {
     $addSupplier.on('click', function () {
+    	$('#supplierCommit').css("display","inline-block");
         var index = layer.open({
             type: 1,
             title: '添加供应商',
@@ -123,40 +124,11 @@ layui.use("layer", function () {
                         }),
                         "/crmSys/supplier/checkphonenumber", 'POST', "联系电话");
                 });
-
-                // 提交事件
-                $(document).on('click', '#supplierCommit', function () {
-                    if($('#supplierName').val().trim() == "") {
-                        layer.msg('名字不能为空', {icon: 2});
-                        return;
-                    }
-                    if($('#supplierAddr').val().trim() == "") {
-                        layer.msg('城市不能为空', {icon: 2});
-                        return;
-                    }
-                    $('#supplierPhoneNumber').trigger("blur");
-                    if (phoneNumberRegular($('#supplierPhoneNumber').val()) !== true) {
-                        console.error("电话格式错误!");
-                        return;
-                    }
-
-                    /*
-                      sname: $(dom1).val(),
-                      saddr: $(dom2).val(),
-                      snumber: $(dom3).val(),
-                    */
-                    // 提交点击请求
-                    addSupplier('#supplierName', '#supplierAddr','#supplierPhoneNumber');
-
-                    // 清空所有input框
-                    $("#layer-supplier input").val("");
-                    $('#supplierCancel').trigger("click");
-                    $tableSupplier.bootstrapTable('refresh');
-                });
             },
             // 关闭弹窗后执行
             end: function () {
                 console.log("添加联系商窗口关闭...");
+                $('#supplierCommit').css("display","none");
             },
             // 右上角关闭事件
             cancel: function () {
@@ -165,6 +137,36 @@ layui.use("layer", function () {
             }
         });
     });
+});
+
+// 添加提交事件
+$(document).on('click', '#supplierCommit', function () {
+    if($('#supplierName').val().trim() == "") {
+        layer.msg('名字不能为空', {icon: 2});
+        return;
+    }
+    if($('#supplierAddr').val().trim() == "") {
+        layer.msg('城市不能为空', {icon: 2});
+        return;
+    }
+    $('#supplierPhoneNumber').trigger("blur");
+    if (phoneNumberRegular($('#supplierPhoneNumber').val()) !== true) {
+        console.error("电话格式错误!");
+        return;
+    }
+
+    /*
+      sname: $(dom1).val(),
+      saddr: $(dom2).val(),
+      snumber: $(dom3).val(),
+    */
+    // 提交点击请求
+    addSupplier('#supplierName', '#supplierAddr','#supplierPhoneNumber');
+
+    // 清空所有input框
+    $("#layer-supplier input").val("");
+    $('#supplierCancel').trigger("click");
+    $tableSupplier.bootstrapTable('refresh');
 });
 
 //删除
@@ -191,6 +193,7 @@ $deleteSupplier.on('click', function () {
 
 // 编辑
 $editSupplier.on('click', function () {
+	$('#supplierCommit2').css("display","inline-block");
     var row = getUtilSelections($tableSupplier)[0];
     layui.use('layer', function () {
         var index = layer.open({
@@ -201,6 +204,11 @@ $editSupplier.on('click', function () {
             area: ['60%', '70%'],
             content: $('#layer-supplier'),
             success: function () {
+            	// 窗口关闭事件
+                $(document).on('click', '#supplierCancel',
+                    function () {
+                        layer.close(index);
+                    });
                 $('#layer-supplier').css("padding", "10px");
                 $('#layer-supplier > .input-group').css("padding", "10px");
 
@@ -215,25 +223,28 @@ $editSupplier.on('click', function () {
                 $('#supplierAddr').val(row.saddr);
                 $('#supplierPhoneNumber').val(row.snumber);
                  $('#supplierPhoneNumber').attr("disabled", true);
-                $(document).on('click', '#supplierCommit', function () {
-                    // 修改事件
-                    updateItem(JSON.stringify({
-                        sname: $('#supplierName').val(),
-                        saddr: $('#supplierAddr').val(),
-                        snumber: $('#supplierPhoneNumber').val()
-                    }), "/crmSys/supplier/update", "POST");
-                    $tableSupplier.bootstrapTable('refresh');
-                    layer.close(index);
-                });
             },
             end: function () { // 最后执行reload
                  $('#supplierPhoneNumber').attr("disabled", false);
                 $('#supplierName').val("");
                 $('#supplierAddr').val("");
                 $('#supplierPhoneNumber').val("");
+                $('#supplierCommit2').css("display","none");
             }
         });
     })
+});
+
+//编辑提交
+$(document).on('click', '#supplierCommit2', function () {
+    // 修改事件
+    updateItem(JSON.stringify({
+        sname: $('#supplierName').val(),
+        saddr: $('#supplierAddr').val(),
+        snumber: $('#supplierPhoneNumber').val()
+    }), "/crmSys/supplier/update", "POST");
+    $tableSupplier.bootstrapTable('refresh');
+    $('#supplierCancel').trigger("click");
 });
 
 function addSupplier(dom1, dom2, dom3) {

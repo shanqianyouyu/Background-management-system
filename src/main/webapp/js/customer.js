@@ -4,7 +4,6 @@ function ajaxCustomer(params) {
         url: "/crmSys/customer/customers",
         type: "GET",
         dataType: "json",
-//        async:false,
         success: function (rs) {
             var message = rs.array;
             params.success({ // 注意，必须返回参数 params
@@ -19,7 +18,6 @@ function ajaxCustomer(params) {
     });
 }
 
-// var $table = $("#adminTable"),
 var $tableCustomer = $("#tableCustomer"),
     $addCustomer = $("#addCustomer"),
     $editCustomer = $("#editCustomer"),
@@ -42,6 +40,7 @@ $tableCustomer.on('check.bs.table uncheck.bs.table ' + 'check-all.bs.table unche
 // 添加
 layui.use("layer", function () {
     $addCustomer.on('click', function () {
+    	$('#customerCommit').css("display","inline-block");
         var index = layer.open({
             type: 1,
             title: '添加客户',
@@ -79,43 +78,10 @@ layui.use("layer", function () {
                         }),
                         "/crmSys/customer/checkemail", 'POST', "邮箱");
                 });
-
-                // 提交事件
-                $(document).on('click', '#customerCommit', function () {
-                    $('#customerName').trigger("blur");
-                    if (nameRegular($('#customerName').val()) !== true) {
-                        console.error("客户姓名错误!");
-                        return;
-                    }
-                    $('#customerPhoneNumber').trigger("blur");
-                    if (phoneNumberRegular($('#customerPhoneNumber').val()) !== true) {
-                        console.error("客户电话格式错误!");
-                        return;
-                    }
-                    $('#customerEmail').trigger("blur");
-                    if (emailRegular($('#customerEmail').val()) !== true) {
-                        console.error("客户邮箱错误!");
-                        return;
-                    }
-                    /*
-                      cname: $(dom1).val(),
-                      cnumber: $(dom2).val(),
-                      caddr: $(dom3).val(),
-                      cemail: $(dom4).val(),
-                      crank: $(dom5).val()
-                    */
-                    // 提交点击请求
-                    addCustomer('#customerName',
-                        '#customerPhoneNumber', '#customerAddr', '#customerEmail', "#customerRank");
-
-                    // 清空所有input框
-                    $("#layer-customer input").val("");
-                    $('#customerCancel').trigger("click");
-                    $tableCustomer.bootstrapTable('refresh');
-                });
             },
             // 关闭弹窗后执行
             end: function () {
+            	$('#customerCommit').css("display","none");
             },
             // 右上角关闭事件
             cancel: function () {
@@ -150,6 +116,7 @@ $deleteCustomer.on('click', function () {
 
 //编辑
 $editCustomer.on('click', function () {
+	$('#customerCommit2').css("display","inline-block");
     var row = getUtilSelections($tableCustomer)[0];
     console.log("row: " + row);
 
@@ -180,24 +147,10 @@ $editCustomer.on('click', function () {
                 $('#customerRank').val(row.crank);
 
 
-                // $('#customerName').attr("disabled", true);
-
-                $(document).on('click', '#customerCommit', function () {
-                    // 修改事件
-                    updateItem(JSON.stringify({
-                        cname: $('#customerName').val(),
-                        cnumber: $('#customerPhoneNumber').val(),
-                        caddr: $('#customerAddr').val(),
-                        createdate: $('#customerCreateDate').val(),
-                        cemail: $('#customerEmail').val(),
-                        crank: $('#customerRank').val()
-                    }), "/crmSys/customer/update", "POST");
-                    $tableCustomer.bootstrapTable('refresh');
-                    console.log("我要关闭编辑弹窗了...");
-                    layer.close(indexcustomer);
-                });
+                 $('#customerPhoneNumber').attr("disabled", true);
             },
             end: function () { // 最后执行reload
+            	$('#customerPhoneNumber').attr("disabled", false);
                 // $('#customerName').attr("disabled", false);
                 $('#customerName').val("");
                 $('#customerPhoneNumber').val("");
@@ -205,9 +158,61 @@ $editCustomer.on('click', function () {
                 $('#customerCreateDate').val("");
                 $('#customerEmail').val("");
                 $('#customerRank').val("");
+                $('#customerCommit2').css("display","none");
             }
         });
     })
+});
+
+//添加提交
+$(document).on('click', '#customerCommit', function () {
+    $('#customerName').trigger("blur");
+    if (nameRegular($('#customerName').val()) !== true) {
+        console.error("客户姓名错误!");
+        return;
+    }
+    $('#customerPhoneNumber').trigger("blur");
+    if (phoneNumberRegular($('#customerPhoneNumber').val()) !== true) {
+        console.error("客户电话格式错误!");
+        return;
+    }
+    $('#customerEmail').trigger("blur");
+    if (emailRegular($('#customerEmail').val()) !== true) {
+        console.error("客户邮箱错误!");
+        return;
+    }
+    /*
+      cname: $(dom1).val(),
+      cnumber: $(dom2).val(),
+      caddr: $(dom3).val(),
+      cemail: $(dom4).val(),
+      crank: $(dom5).val()
+    */
+    // 提交点击请求
+    addCustomer('#customerName',
+        '#customerPhoneNumber', '#customerAddr', '#customerEmail', "#customerRank");
+
+    // 清空所有input框
+    $("#layer-customer input").val("");
+    $('#customerCancel').trigger("click");
+    $tableCustomer.bootstrapTable('refresh');
+});
+
+//编辑提交
+$(document).on('click', '#customerCommit2', function () {
+    // 修改事件
+    updateItem(JSON.stringify({
+        cname: $('#customerName').val(),
+        cnumber: $('#customerPhoneNumber').val(),
+        caddr: $('#customerAddr').val(),
+        createdate: $('#customerCreateDate').val(),
+        cemail: $('#customerEmail').val(),
+        crank: $('#customerRank').val()
+    }), "/crmSys/customer/update", "POST");
+    $tableCustomer.bootstrapTable('refresh');
+    $('#customerCancel').trigger("click");
+//    console.log("我要关闭编辑弹窗了...");
+//    layer.close(indexcustomer);
 });
 
 //添加客户

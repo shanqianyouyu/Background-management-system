@@ -10,18 +10,6 @@ var admincolumns = [{
 }, {
     field: 'name',
     title: '姓名',
-//    editable: {
-//    	type: "text",                //编辑框的类型。支持text|textarea|select|date|checklist等
-//    	title: "用户名",              //编辑框的标题
-//    	disabled: false,             //是否禁用编辑
-//    	emptytext: "空文本",          //空值的默认文本
-//    	mode: "popup",              //编辑框的模式：支持popup和inline两种模式，默认是popup
-//    	validate: function (value) { //字段验证
-//    		if (!$.trim(value)) {
-//    			return '不能为空';
-//    		}
-//    	}
-//    }
 }, {
 	field: 'createdate',
 	title: '创建日期',
@@ -32,7 +20,7 @@ var admincolumns = [{
 }, {
     field: 'identity',
     title: '身份',
-//    visible: false,
+    visible: false,
 }, {
     field: 'identity',
     title: '身份',
@@ -43,7 +31,8 @@ var customercolumns = [{
     checkbox: true
 }, {
     field: 'cnum',
-    title: '客户编号'
+    title: '客户编号',
+    visible: false,
 }, {
     field: 'cname',
     title: '姓名',
@@ -69,6 +58,7 @@ var suppliercolumns = [{
 },  {
     field: 'snum',
     title: '供应商编号',
+    visible: false,
 }, {
     field: 'sname',
     title: '名字'
@@ -87,7 +77,8 @@ var productcolumns = [{
 	checkbox: true
 }, {
 	field: 'pnum',
-	title: '产品编号'
+	title: '产品编号',
+    visible: false
 }, {
 	field: 'pname',
 	title: '产品名字'
@@ -130,7 +121,8 @@ var feedbackcolumns = [{
 	checkbox: true
 }, {
 	field: 'pid',
-	title: '编号'
+	title: '编号',
+    visible: false
 }, {
 	field: 'fitem',
 	title: '产品问题'

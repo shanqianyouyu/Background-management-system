@@ -90,6 +90,7 @@ $tableFeedback.on('check.bs.table uncheck.bs.table ' + 'check-all.bs.table unche
 // 添加
 layui.use("layer", function () {
     $addFeedback.on('click', function () {
+    	$('#feedbackCommit').css("display","inline-block");
         var index = layer.open({
             type: 1,
             title: '添加投诉信息',
@@ -123,44 +124,15 @@ layui.use("layer", function () {
                 //         }),
                 //         "/crmSys/feedback/checkpid", 'POST', "编号");
                 // });
-
-                // 提交事件
-                $(document).on('click', '#feedbackCommit', function () {
-                    if ($('#feedbackFitem').val().trim() == "") {
-                        layer.msg('产品问题不能为空', {icon: 2});
-                        return;
-                    }
-                    if ($('#feedbackCid').val().trim() == "") {
-                        layer.msg('cid不能为空', {icon: 2});
-                        return;
-                    }
-                    if ($('#feedbackUid').val().trim() == "") {
-                        layer.msg('uid不能为空', {icon: 2});
-                        return;
-                    }
-                    if ($('#feedbackPeriod').val().trim() == "") {
-                        layer.msg('服务信息不能为空', {icon: 2});
-                        return;
-                    }
-
-                    /*
-                    fitem   feedbackFitem
-                    cid     feedbackCid
-                    uid     feedbackUid
-                    period  feedbackPeriod
-                    */
-                    // 提交点击请求
-                    addFeedback('#feedbackFitem', '#feedbackCid', '#feedbackUid', '#feedbackPeriod');
-
-                    // 清空所有input框
-                    $("#layer-feedback input").val("");
-                    $('#feedbackCancel').trigger("click");
-                    $tableFeedback.bootstrapTable('refresh');
-                });
+                $("#layer-feedback input").val("");
+                $('#feedbackCancel').trigger("click");
+                $tableFeedback.bootstrapTable('refresh');
             },
             // 关闭弹窗后执行
             end: function () {
+            	 
                 console.log("添加联系商窗口关闭...");
+                $('#feedbackCommit').css("display","none");
             },
             // 右上角关闭事件
             cancel: function () {
@@ -195,7 +167,7 @@ $deleteFeedback.on('click', function () {
 // 编辑
 $editFeedback.on('click', function () {
     var row = getUtilSelections($tableFeedback)[0];
-
+    $('#feedbackCommit2').css("display","inline-block");
     layui.use('layer', function () {
         var index = layer.open({
             type: 1,
@@ -221,29 +193,10 @@ $editFeedback.on('click', function () {
                 $('#feedbackUid').val(row.uid);
                 $('#feedbackPeriod').val(row.period);
                 $('#feedbackCreatetime').val(row.createtime);
-
-
                 $('#feedbackCreatetime').parent().css("display", "table");
                  $('#feedbackCreatetime').attr("disabled", true);
+                 layer.close(index);
 
-                $(document).on('click', '#feedbackCommit', function () {
-                    console.log("产品编辑提交...");
-                    console.log($('#feedbackFitem').val());
-                    console.log($('#feedbackCid').val());
-                    console.log($('#feedbackUid').val());
-
-                    // 修改事件
-                    updateItem(JSON.stringify({
-                        fitem: $('#feedbackFitem').val(),
-                        cid: $('#feedbackCid').val(),
-                        uid: $('#feedbackUid').val(),
-                        period: $('#feedbackPeriod').val(),
-                        createtime: $('#feedbackCreatetime').val()
-                        
-                    }), "/crmSys/feedback/update", "POST");
-
-                    layer.close(index);
-                });
             },
             end: function () { // 最后执行reload
                 $tableFeedback.bootstrapTable('refresh');
@@ -253,6 +206,7 @@ $editFeedback.on('click', function () {
                 $('#feedbackCid').val();
                 $('#feedbackUid').val();
                 $('#feedbackPeriod').val();
+                $('#feedbackCommit2').css("display","none");
             }
         });
     })
@@ -302,3 +256,49 @@ function addFeedback(dom1, dom2, dom3, dom4) {
         }
     });
 }
+
+//提交事件
+$(document).on('click', '#feedbackCommit', function () {
+    if ($('#feedbackFitem').val().trim() == "") {
+        layer.msg('产品问题不能为空', {icon: 2});
+        return;
+    }
+    if ($('#feedbackCid').val().trim() == "") {
+        layer.msg('cid不能为空', {icon: 2});
+        return;
+    }
+    if ($('#feedbackUid').val().trim() == "") {
+        layer.msg('uid不能为空', {icon: 2});
+        return;
+    }
+    if ($('#feedbackPeriod').val().trim() == "") {
+        layer.msg('服务信息不能为空', {icon: 2});
+        return;
+    }
+    /*
+    fitem   feedbackFitem
+    cid     feedbackCid
+    uid     feedbackUid
+    period  feedbackPeriod
+    */
+    // 提交点击请求
+    addFeedback('#feedbackFitem', '#feedbackCid', '#feedbackUid', '#feedbackPeriod');
+});
+
+
+//编辑提交
+$(document).on('click', '#feedbackCommit2', function () {
+    console.log("产品编辑提交...");
+    console.log($('#feedbackFitem').val());
+    console.log($('#feedbackCid').val());
+    console.log($('#feedbackUid').val());
+
+    // 修改事件
+    updateItem(JSON.stringify({
+        fitem: $('#feedbackFitem').val(),
+        cid: $('#feedbackCid').val(),
+        uid: $('#feedbackUid').val(),
+        period: $('#feedbackPeriod').val(),
+        createtime: $('#feedbackCreatetime').val()
+    }), "/crmSys/feedback/update", "POST");
+});
